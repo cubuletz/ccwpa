@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+** BASE
+** (max-w-[1280px] px-5 mx-auto mb-10;)
+*/
+@layer base {
+  body {
+    /* Background color */
+    /* @apply bg-white; */
+  }
+}
+
+/*
+** COMPONENTS
+*/
+@layer components {
+  /* Link */
+  .a-link {
+    @apply cursor-pointer text-blue-800 hover:underline hover:underline-offset-2;
+  }
+}
+
+/*
+** UTILITIES
+*/
+@layer utilities {
+}

@@ -5,7 +5,7 @@
       <template #headline>
         <div class="space-y-10">
           <!-- HEADLINE H1 -->
-          <h1 class="text-4xl font-bold">Contrast Checker</h1>
+          <h1 class="text-4xl font-bold">{{ pageTitle }}</h1>
         </div>
       </template>
 
@@ -61,14 +61,14 @@
               <div class="flex space-x-3">
                 <!-- BUTTON CHECK -->
                 <button
-                  class="w-full h-12 text-blue-800 border rounded-full border-neutral-300"
+                  class="w-full h-12 text-blue-800 border rounded-full border-neutral-300 hover:border-neutral-400 active:border-neutral-300"
                   @click="onCheckContrast"
                 >
                   CHECK CONTRAST
                 </button>
                 <!-- BUTTON CHECK -->
                 <button
-                  class="w-full h-12 text-blue-800 border rounded-full border-neutral-300"
+                  class="w-full h-12 text-blue-800 border rounded-full border-neutral-300 hover:border-neutral-400 active:border-neutral-300"
                   @click="onClearInputs"
                 >
                   CLEAR
@@ -87,6 +87,8 @@
                   <span class="font-normal">Contrast Ratio</span></span
                 >
               </div>
+
+              <hr class="border-neutral-300" />
 
               <!-- NORMAL TEXT -->
               <div class="space-y-1">
@@ -197,6 +199,25 @@ export default {
 </script>
 
 <script setup>
+// Page title
+const pageTitle = 'Contrast Checker'
+
+// PAGE HEAD
+useHead({
+  title: pageTitle,
+  /*  bodyAttrs: {
+    class: '',
+  }, */
+})
+
+// PAGE META
+definePageMeta({
+  // Middleware
+  // middleware: [],
+})
+
+//
+
 // v-model
 const options = ref({
   foreground: 'rgb(255, 255, 255)',

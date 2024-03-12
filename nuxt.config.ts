@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   // SSR
   ssr: false,
 
-  // DEVTOOLS
+  // DEVTOOLSgis
   devtools: { enabled: false },
 
   // DEV SERVER

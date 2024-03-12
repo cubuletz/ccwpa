@@ -5,7 +5,7 @@
       <template #headline>
         <div class="space-y-10">
           <!-- HEADLINE H1 -->
-          <h1 class="text-4xl font-bold">Test</h1>
+          <h1 class="text-4xl font-bold">{{ pageTitle }}</h1>
         </div>
       </template>
 
@@ -22,8 +22,27 @@
 
 <script>
 export default {
-  name: "PageTest",
+  name: 'PagePoll',
 }
+</script>
+
+<script setup>
+// Page title
+const pageTitle = 'Poll'
+
+// PAGE HEAD
+useHead({
+  title: pageTitle,
+  /*  bodyAttrs: {
+    class: '',
+  }, */
+})
+
+// PAGE META
+definePageMeta({
+  // Middleware
+  // middleware: [],
+})
 </script>
 
 <style lang="postcss" scoped></style>

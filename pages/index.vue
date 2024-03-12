@@ -3,12 +3,12 @@
     <NuxtLayout name="main">
       <!-- H1 -->
       <template #headline>
-        <div class="flex items-start space-x-10">
-          <div class="space-y-3">
+        <div class="flex items-start space-x-5">
+          <div class="w-1/2 space-y-3">
             <!-- HEADLINE H1 -->
             <h1 class="text-5xl font-bold text-neutral-800">
-              Color Contrast in <br />
-              Web Pages <br />
+              Color Contrast <br />
+              in Web Pages <br />
               and Aplications
             </h1>
             <!-- Subtitle -->
@@ -23,8 +23,16 @@
 
           <div class="w-1/2 space-y-1">
             <!-- Hero image -->
-            <img src="/hero.jpeg" alt="" />
-            <p class="text-sm text-right">Free image provided by ...</p>
+            <img src="/hero.jpg" alt="" />
+            <p class="text-sm text-right">
+              Free image from
+              <a
+                href="https://unsplash.com/photos/red-white-and-green-color-pencils-O2u6gA2esAI"
+                target="blank"
+                class="font-semibold a-link"
+                >unsplash.com</a
+              >
+            </p>
           </div>
         </div>
       </template>
@@ -47,6 +55,25 @@
 export default {
   name: 'PageHome',
 }
+</script>
+
+<script setup>
+// Page title
+const pageTitle = 'Home'
+
+// PAGE HEAD
+useHead({
+  title: pageTitle,
+  /*  bodyAttrs: {
+    class: '',
+  }, */
+})
+
+// PAGE META
+definePageMeta({
+  // Middleware
+  // middleware: [],
+})
 </script>
 
 <style lang="postcss" scoped></style>

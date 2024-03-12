@@ -19,14 +19,14 @@
           Contrast Checker
         </NuxtLink>
 
-        <!-- TEST -->
+        <!-- POOL -->
         <NuxtLink
-          to="/test/"
+          to="/poll/"
           class="p-2 text-base rounded-lg text-neutral-600 hover:text-neutral-900"
           :active-class="'nuxt-link-active'"
           exact
         >
-          Test
+          Poll
         </NuxtLink>
 
         <!-- REPORT -->
@@ -72,6 +72,6 @@ export default {
 
 <style lang="postcss" scoped>
 .nuxt-link-active {
-  @apply text-neutral-800 underline underline-offset-8 decoration-2 decoration-wavy decoration-red-600 font-semibold;
+  @apply text-neutral-800 underline  underline-offset-[22px] decoration-4 decoration-neutral-800 font-semibold;
 }
 </style>
