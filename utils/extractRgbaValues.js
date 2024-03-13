@@ -9,7 +9,7 @@ export default function extractRgbaValues(rgba) {
     const r1 = rgbaArray[0]
     const g1 = rgbaArray[1]
     const b1 = rgbaArray[2]
-    const a = rgbaArray[3]
+    const a = parseFloat(rgbaArray[3].split('').join('.'))
     //
     // Convert RGBA to RGB
     // TODO: set real background value (not 255, 255, 255)

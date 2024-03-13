@@ -19,15 +19,18 @@
             >
               <!-- FOREGROUND -->
               <div class="space-y-2">
-                <!-- Input -->
                 <div class="space-y-1">
-                  <label class="text-base font-bold text-neutral-600"
+                  <!-- Label -->
+                  <label
+                    for="foreground"
+                    class="text-base font-bold text-neutral-600"
                     >Foreground Color</label
                   >
-                  <input
+                  <!-- Input -->
+                  <AppInput
                     v-model="options.foreground"
-                    placeholder="rgba(0, 0, 0, 1)"
-                    class="w-full h-12 p-3 border rounded-lg text-neutral-800 border-neutral-400 hover:border-neutral-800"
+                    name="foreground"
+                    :default-value="options.foreground"
                   />
                 </div>
                 <!-- Color sample -->
@@ -39,15 +42,18 @@
 
               <!-- BACKGROUND -->
               <div class="space-y-2">
-                <!-- Input -->
                 <div class="space-y-1">
-                  <label class="text-base font-bold text-neutral-600"
+                  <!-- Label -->
+                  <label
+                    for="background"
+                    class="text-base font-bold text-neutral-600"
                     >Background Color</label
                   >
-                  <input
+                  <!-- Input -->
+                  <AppInput
                     v-model="options.background"
-                    placeholder="rgba(0, 0, 0, 1)"
-                    class="w-full h-12 p-3 border rounded-lg text-neutral-800 border-neutral-400 hover:border-neutral-800"
+                    name="background"
+                    :default-value="options.background"
                   />
                 </div>
                 <!-- Color sample -->
@@ -58,21 +64,16 @@
               </div>
 
               <!-- BUTTONS -->
-              <div class="flex space-x-3">
+              <div class="flex space-x-5">
                 <!-- BUTTON CHECK -->
-                <button
-                  class="w-full h-12 text-blue-800 border rounded-full border-neutral-300 hover:border-neutral-400 active:border-neutral-300"
-                  @click="onCheckContrast"
-                >
-                  CHECK CONTRAST
-                </button>
-                <!-- BUTTON CHECK -->
-                <button
-                  class="w-full h-12 text-blue-800 border rounded-full border-neutral-300 hover:border-neutral-400 active:border-neutral-300"
+                <AppButton label="CHECK" @click="onCheckContrast" />
+
+                <!-- BUTTON CLEAR -->
+                <AppButton
+                  variant="gost"
+                  label="CLEAR"
                   @click="onClearInputs"
-                >
-                  CLEAR
-                </button>
+                />
               </div>
             </div>
 
@@ -93,8 +94,8 @@
               <!-- NORMAL TEXT -->
               <div class="space-y-1">
                 <!-- Normal text -->
-                <div class="space-x-3">
-                  <span class="text-base text-neutral-800">Normal text:</span>
+                <div class="space-x-3 text-base font-bold">
+                  <span class="text-neutral-600">Normal text:</span>
                   <span
                     class="font-bold"
                     :class="[
@@ -132,8 +133,8 @@
               <!-- LARGE TEXT -->
               <div class="space-y-1">
                 <!-- Normal text -->
-                <div class="space-x-3">
-                  <span class="text-base text-neutral-800">Large text:</span>
+                <div class="space-x-3 text-base font-bold">
+                  <span class="text-neutral-600">Large text:</span>
                   <span
                     class="font-bold"
                     :class="[
