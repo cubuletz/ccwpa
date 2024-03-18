@@ -14,51 +14,116 @@
         <div class="space-y-10">
           <!-- SECTION 1 -->
           <section class="flex items-start space-x-10">
-            <div
+            <form
               class="w-1/2 p-5 space-y-10 border rounded-lg border-neutral-300"
+              @submit.prevent="onCheckContrast"
             >
               <!-- FOREGROUND -->
               <div class="space-y-2">
-                <div class="space-y-1">
-                  <!-- Label -->
-                  <label
-                    for="foreground"
-                    class="text-base font-bold text-neutral-600"
-                    >Foreground Color</label
-                  >
-                  <!-- Input -->
-                  <AppInput
-                    v-model="options.foreground"
-                    name="foreground"
-                    :default-value="options.foreground"
-                  />
+                <p class="pb-5 text-neutral-600">
+                  <span class="text-2xl text-red-600">*</span> Indicates a
+                  required field
+                </p>
+
+                <div class="flex items-end space-x-3">
+                  <!-- RGB -->
+                  <div class="space-y-1">
+                    <!-- Label -->
+                    <label
+                      for="foreground"
+                      class="text-base font-bold text-neutral-600"
+                      >Foreground Colour (rgb)
+                      <span class="text-2xl font-normal text-red-600">*</span>
+                    </label>
+
+                    <!-- Input -->
+                    <AppInput
+                      v-model="options.foreground"
+                      :required="true"
+                      name="foreground"
+                      :default-value="options.foreground"
+                    />
+                  </div>
+
+                  <!-- ALPHA -->
+                  <div class="w-1/4 space-y-1">
+                    <!-- Label -->
+                    <label
+                      for="foregroundAlpha"
+                      class="text-base font-bold text-neutral-600"
+                      >Alpha
+                      <span class="text-2xl font-normal text-red-600">*</span>
+                    </label>
+                    <!-- Input alpha-->
+                    <AppInput
+                      v-model="options.foregroundAlpha"
+                      :required="true"
+                      type="number"
+                      step=".01"
+                      max="1"
+                      name="foregroundAlpha"
+                      :default-value="options.foregroundAlpha"
+                    />
+                  </div>
                 </div>
+
                 <!-- Color sample -->
                 <div
-                  :style="{ backgroundColor: `${options.foreground}` }"
+                  :style="{
+                    backgroundColor: `rgba(${options.foreground}, ${options.foregroundAlpha})`,
+                  }"
                   class="w-full h-12 border border-neutral-300"
                 ></div>
               </div>
 
               <!-- BACKGROUND -->
               <div class="space-y-2">
-                <div class="space-y-1">
-                  <!-- Label -->
-                  <label
-                    for="background"
-                    class="text-base font-bold text-neutral-600"
-                    >Background Color</label
-                  >
-                  <!-- Input -->
-                  <AppInput
-                    v-model="options.background"
-                    name="background"
-                    :default-value="options.background"
-                  />
+                <div class="flex items-end space-x-3">
+                  <!-- RGB -->
+                  <div class="space-y-1">
+                    <!-- Label -->
+                    <label
+                      for="background"
+                      class="text-base font-bold text-neutral-600"
+                      >Background Colour (rgb)
+                      <span class="text-2xl font-normal text-red-600">*</span>
+                    </label>
+                    <!-- Input -->
+                    <AppInput
+                      v-model="options.background"
+                      :required="true"
+                      name="background"
+                      :default-value="options.background"
+                    />
+                  </div>
+
+                  <!-- ALPHA -->
+                  <div class="w-1/4 space-y-1">
+                    <!-- Label -->
+                    <label
+                      for="backgroundAlpha"
+                      class="text-base font-bold text-neutral-600"
+                    >
+                      Alpha
+                      <span class="text-2xl font-normal text-red-600">*</span>
+                    </label>
+                    <!-- Input alpha -->
+                    <AppInput
+                      v-model="options.backgroundAlpha"
+                      :required="true"
+                      type="number"
+                      step=".01"
+                      max="1"
+                      name="backgroundAlpha"
+                      :default-value="options.backgroundAlpha"
+                    />
+                  </div>
                 </div>
                 <!-- Color sample -->
                 <div
-                  :style="{ backgroundColor: `${options.background}` }"
+                  :style="{
+                    backgroundColor: `rgba(${options.background}, ${options.backgroundAlpha})`,
+                  }"
                   class="w-full h-12 border border-neutral-300"
                 ></div>
               </div>
@@ -66,7 +131,7 @@
               <!-- BUTTONS -->
               <div class="flex space-x-5">
                 <!-- BUTTON CHECK -->
-                <AppButton label="CHECK" @click="onCheckContrast" />
+                <AppButton type="submit" label="CHECK" />
 
                 <!-- BUTTON CLEAR -->
                 <AppButton
@@ -75,7 +140,7 @@
                   @click="onClearInputs"
                 />
               </div>
-            </div>
+            </form>
 
             <!-- RESULTS -->
             <div
@@ -114,13 +179,13 @@
 
                 <div
                   :style="{
-                    backgroundColor: `${resultBackground}`,
+                    backgroundColor: `rgba(${resultBackground}, ${resultBackgroundAlpha})`,
                   }"
                   class="flex items-center w-full h-12 px-5 border border-neutral-300"
                 >
                   <p
                     :style="{
-                      color: `${resultForegound}`,
+                      color: `rgba(${resultForegound}, ${resultForegroundAlpha})`,
                       fontSize: '16px',
                       fontStyle: 'normal',
                     }"
@@ -152,12 +217,14 @@
                 </div>
 
                 <div
-                  :style="{ backgroundColor: `${resultBackground}` }"
+                  :style="{
+                    backgroundColor: `rgba(${resultBackground}, ${resultBackgroundAlpha})`,
+                  }"
                   class="flex items-center w-full h-12 px-5 border border-neutral-300"
                 >
                   <p
                     :style="{
-                      color: `${resultForegound}`,
+                      color: `rgba(${resultForegound}, ${resultForegroundAlpha})`,
                       fontSize: '18.66px',
                     }"
                     class="w-full font-bold line-clamp-1"
@@ -168,7 +235,7 @@
               </div>
 
               <!-- REF -->
-              <div class="space-y-4 text-base text-neutral-600">
+              <div class="space-y-4 text-base pt-7 text-neutral-600">
                 <p>
                   <span class="font-bold">Large text</span> is defined as 14
                   point (typically 18.66px) and bold or larger, or 18 point
@@ -221,15 +288,19 @@ definePageMeta({
 
 // v-model
 const options = ref({
-  foreground: 'rgb(255, 255, 255)',
-  background: 'rgb(255, 255, 255)',
+  foreground: '255, 255, 255',
+  foregroundAlpha: 1,
+  background: '255, 255, 255',
+  backgroundAlpha: 1,
   // fontSize: '16',
   // fontStyle: 'normal',
 })
 
 // Result
-const resultForegound = ref('rgb(255, 255, 255)')
-const resultBackground = ref('rgb(255, 255, 255)')
+const resultForegound = ref('255, 255, 255')
+const resultBackground = ref('255, 255, 255')
+const resultForegroundAlpha = ref(1)
+const resultBackgroundAlpha = ref(1)
 
 // Contrast ratio
 const ratio = ref('---')
@@ -263,6 +334,11 @@ function onCheckContrast() {
   resultForegound.value = options.value.foreground
   // Set result background
   resultBackground.value = options.value.background
+  // Set result foreground alpha
+  resultForegroundAlpha.value = options.value.foregroundAlpha
+  // Set result background alpha
+  resultBackgroundAlpha.value = options.value.backgroundAlpha
+
   // Set contrast ratio
   ratio.value = contrastRatio.value
   // Set AA
@@ -274,20 +350,26 @@ function onCheckContrast() {
 // Clear inputs
 function onClearInputs() {
   const { contrastRatio, contrastAA, contrastAAA } = useContrastChecker({
-    foreground: 'rgb(255, 255, 255)',
-    background: 'rgb(255, 255, 255)',
+    foreground: '255, 255, 255',
+    background: '255, 255, 255',
+    foregroundAlpha: 1,
+    backgroundAlpha: 1,
     fontSize: '16',
     fontStyle: 'normal',
   })
 
   // Set result foreground
-  resultForegound.value = 'rgb(255, 255, 255)'
+  resultForegound.value = '255, 255, 255'
   // Set result background
-  resultBackground.value = 'rgb(255, 255, 255)'
+  resultBackground.value = '255, 255, 255'
 
   // Options foreground/background
-  options.value.foreground = 'rgb(255, 255, 255)'
-  options.value.background = 'rgb(255, 255, 255)'
+  options.value.foreground = '255, 255, 255'
+  options.value.background = '255, 255, 255'
+  // Options alpha
+  options.value.foregroundAlpha = 1
+  options.value.backgroundAlpha = 1
+
   // Set contrast ratio
   ratio.value = contrastRatio.value
   // Set AA

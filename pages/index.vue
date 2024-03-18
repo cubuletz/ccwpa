@@ -7,7 +7,7 @@
           <div class="w-1/2 space-y-3">
             <!-- HEADLINE H1 -->
             <h1 class="text-5xl font-bold text-neutral-800">
-              Color Contrast <br />
+              Colour Contrast <br />
               in Web Pages <br />
               and Aplications
             </h1>

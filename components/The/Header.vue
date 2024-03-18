@@ -39,14 +39,14 @@
           Report
         </NuxtLink>
 
-        <!-- REFERENCES -->
+        <!-- ABOUT -->
         <NuxtLink
-          to="/references/"
+          to="/about/"
           class="p-2 text-base rounded-lg text-neutral-600 hover:text-neutral-900"
           :active-class="'nuxt-link-active'"
           exact
         >
-          References
+          About
         </NuxtLink>
       </div>
     </div>

@@ -21,6 +21,8 @@ export default function useContrastChecker(options) {
   const {
     foreground = '', // rgb, rgba
     background = '', // rgb, rgba
+    foregroundAlpha = null,
+    backgroundAlpha = null,
     fontSize = '',
     fontStyle = '',
   } = options
@@ -32,11 +34,14 @@ export default function useContrastChecker(options) {
   // AAA
   const contrastAAA = ref('')
 
-  if (foreground && background && fontSize && fontStyle) {
-    // Check if foreground / background color format is RGB or RGBA
-    const foregroundHasRgba = foreground.includes('rgba')
-    const backgroundHasRgba = background.includes('rgba')
-
+  if (
+    foreground &&
+    background &&
+    foregroundAlpha &&
+    backgroundAlpha &&
+    fontSize &&
+    fontStyle
+  ) {
     // Foreground
     let rForeground
     let gForeground
@@ -47,28 +52,14 @@ export default function useContrastChecker(options) {
     let bBackground
 
     // Extract foreground  r, g, b values
-    if (!foregroundHasRgba) {
-      rForeground = extractRgbValues(foreground).r
-      gForeground = extractRgbValues(foreground).g
-      bForeground = extractRgbValues(foreground).b
-    }
-    if (foregroundHasRgba) {
-      rForeground = extractRgbaValues(foreground).r
-      gForeground = extractRgbaValues(foreground).g
-      bForeground = extractRgbaValues(foreground).b
-    }
+    rForeground = extractValues(foreground, foregroundAlpha).r
+    gForeground = extractValues(foreground, foregroundAlpha).g
+    bForeground = extractValues(foreground, foregroundAlpha).b
 
-    // Extract background  r, g, b values
-    if (!backgroundHasRgba) {
-      rBackground = extractRgbValues(background).r
-      gBackground = extractRgbValues(background).g
-      bBackground = extractRgbValues(background).b
-    }
-    if (backgroundHasRgba) {
-      rBackground = extractRgbaValues(background).r
-      gBackground = extractRgbaValues(background).g
-      bBackground = extractRgbaValues(background).b
-    }
+    // Extract foreground  r, g, b values
+    rBackground = extractValues(background, backgroundAlpha).r
+    gBackground = extractValues(background, backgroundAlpha).g
+    bBackground = extractValues(background, backgroundAlpha).b
 
     //
 

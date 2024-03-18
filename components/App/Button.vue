@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     class="w-full h-12 rounded-full"
     :class="[
       variant === 'solid' &&
@@ -31,6 +32,12 @@ const props = defineProps({
   label: {
     type: String,
     default: 'BUTTON',
+  },
+
+  // Type
+  type: {
+    type: String,
+    default: 'button',
   },
 })
 </script>

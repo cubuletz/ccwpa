@@ -22,13 +22,13 @@
 
 <script>
 export default {
-  name: 'PageReferences',
+  name: 'PageAbout',
 }
 </script>
 
 <script setup>
 // Page title
-const pageTitle = 'References'
+const pageTitle = 'About'
 
 // PAGE HEAD
 useHead({

@@ -4,8 +4,13 @@
     :id="name"
     :name="name"
     :type="type"
+    :step="type === 'number' ? step : null"
+    :min="min"
+    :max="max"
     :placeholder="placeholder"
-    class="w-full h-12 p-3 border rounded-lg text-neutral-800 border-neutral-400 hover:border-neutral-800"
+    :required="required"
+    :autocomplete="autocomplete"
+    class="w-full h-12 p-3 border rounded-xl text-neutral-800 border-neutral-400 hover:border-neutral-800"
   />
 </template>
 
@@ -20,6 +25,11 @@ export default {
       type: String,
       default: 'text',
     },
+    // Step
+    step: {
+      type: String,
+      default: '1',
+    },
     // Namae
     name: {
       type: String,
@@ -28,7 +38,24 @@ export default {
     // Placeholder
     placeholder: {
       type: String,
-      default: 'placeholder',
+      default: '',
+    },
+    // Required
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    autocomplete: {
+      type: String,
+      default: 'off',
+    },
+    min: {
+      type: String,
+      default: null,
+    },
+    max: {
+      type: String,
+      default: null,
     },
     // Default value
     defaultValue: {
