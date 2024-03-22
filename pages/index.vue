@@ -13,12 +13,19 @@
             </h1>
             <!-- Subtitle -->
             <p class="text-xl text-neutral-600">
-              Do irure quis commodo amet eu ullamco in nisi incididunt id amet
-              elit ex sint.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore ...
             </p>
-
             <!-- Author -->
             <p class="text-base text-neutral-600">by Cristian Ciobanu, 2024</p>
+
+            <div class="flex items-center pt-4 space-x-5">
+              <AppButton
+                label="Contrast Checker"
+                @click="navigateTo('/contrast-checker/')"
+              />
+              <AppButton label="Poll" @click="navigateTo('/poll/')" />
+            </div>
           </div>
 
           <div class="w-1/2 space-y-1">
@@ -41,10 +48,7 @@
       <template #main>
         <div class="space-y-10">
           <!-- SECTION 1 -->
-          <section class="space-y-5 bg-slate-300">Section 1</section>
-
-          <!-- SECTION 2  -->
-          <section class="space-y-5 bg-slate-300">Section 2</section>
+          <!-- <section class="flex items-center w-1/2 pr-5 space-x-5"></section> -->
         </div>
       </template>
     </NuxtLayout>
