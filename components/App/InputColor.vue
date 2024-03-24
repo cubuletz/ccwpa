@@ -1,22 +1,33 @@
 <template>
-  <input
-    v-model="innerValue"
-    :id="name"
-    :name="name"
-    :type="type"
-    :step="type === 'number' ? step : null"
-    :min="min"
-    :max="max"
-    :placeholder="placeholder"
-    :required="required"
-    :autocomplete="autocomplete"
-    class="w-full h-12 p-3 border rounded-xl text-neutral-800 border-neutral-400 hover:border-neutral-800"
-  />
+  <div class="flex items-center">
+    <input
+      v-model="innerValue"
+      :id="name"
+      :name="name"
+      :type="type"
+      :step="type === 'number' ? step : null"
+      :min="min"
+      :max="max"
+      :placeholder="placeholder"
+      :required="required"
+      :autocomplete="autocomplete"
+      class="w-full h-12 p-3 border rounded-l-xl text-neutral-800 border-neutral-400 hover:border-neutral-800"
+    />
+
+    <div
+      class="flex items-center justify-center w-20 h-12 border-r border-y rounded-r-xl border-neutral-400"
+    >
+      <div
+        class="w-full mx-1 rounded-r-lg h-9"
+        :style="{ backgroundColor: `rgba(${sampleColor}, ${sampleAlpha})` }"
+      ></div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'AppInput',
+  name: 'AppInputColor',
 
   // PROPS
   props: {
@@ -67,6 +78,16 @@ export default {
       type: [String, Number],
       default: null,
     },
+    // Sample color
+    sampleColor: {
+      type: String,
+      default: null,
+    },
+    // SampleAlpha
+    sampleAlpha: {
+      type: Number,
+      default: null,
+    },
   },
 
   // EMITS
@@ -105,5 +126,7 @@ export default {
   },
 }
 </script>
+
+<script setup></script>
 
 <style lang="postcss" scoped></style>

@@ -13,246 +13,259 @@
       <template #main>
         <div class="space-y-10">
           <!-- SECTION 1 -->
-          <section class="flex items-start space-x-10">
-            <form
-              class="w-1/2 p-5 space-y-10 border rounded-lg border-neutral-300"
-              @submit.prevent="onCheckContrast"
-            >
-              <!-- FOREGROUND -->
-              <div class="space-y-2">
-                <p class="pb-5 text-neutral-600">
+          <section class="space-y-10">
+            <div class="flex items-start space-x-5">
+              <form
+                class="w-1/2 px-5 pt-4 pb-5 space-y-5 border rounded-l-2xl border-neutral-300"
+                @submit.prevent="onCheckContrast"
+              >
+                <!-- FOREGROUND -->
+                <div class="space-y-2">
+                  <!--   <p class="pb-5 text-neutral-600">
                   <span class="text-2xl text-red-600">*</span> Indicates a
                   required field
-                </p>
+                </p> -->
 
-                <div class="flex items-end space-x-3">
-                  <!-- RGB -->
-                  <div class="space-y-1">
-                    <!-- Label -->
-                    <label
-                      for="foreground"
-                      class="text-base font-bold text-neutral-600"
-                      >Foreground Colour (rgb)
-                      <span class="text-2xl font-normal text-red-600">*</span>
-                    </label>
+                  <div class="flex items-end space-x-3">
+                    <!-- RGB -->
+                    <div class="w-full space-y-1">
+                      <!-- Label -->
+                      <label for="foreground" class="text-base text-neutral-600"
+                        >Foreground Colour (rgb)
+                        <!-- <span class="text-2xl font-normal text-red-600">*</span> -->
+                      </label>
 
-                    <!-- Input -->
-                    <AppInput
-                      v-model="options.foreground"
-                      :required="true"
-                      name="foreground"
-                      :default-value="options.foreground"
-                    />
-                  </div>
+                      <!-- Input -->
+                      <AppInputColor
+                        v-model="options.foreground"
+                        :required="true"
+                        name="foreground"
+                        :default-value="options.foreground"
+                        :sample-color="options.foreground"
+                        :sample-alpha="options.foregroundAlpha"
+                        class="w-full"
+                      />
+                    </div>
 
-                  <!-- ALPHA -->
-                  <div class="w-1/4 space-y-1">
-                    <!-- Label -->
-                    <label
-                      for="foregroundAlpha"
-                      class="text-base font-bold text-neutral-600"
-                      >Alpha
-                      <span class="text-2xl font-normal text-red-600">*</span>
-                    </label>
-                    <!-- Input alpha-->
-                    <AppInput
-                      v-model="options.foregroundAlpha"
-                      :required="true"
-                      type="number"
-                      step=".01"
-                      max="1"
-                      name="foregroundAlpha"
-                      :default-value="options.foregroundAlpha"
-                    />
+                    <!-- ALPHA -->
+                    <div class="w-1/4 space-y-1">
+                      <!-- Label -->
+                      <label
+                        for="foregroundAlpha"
+                        class="text-base text-neutral-600"
+                        >Alpha
+                        <!-- <span class="text-2xl font-normal text-red-600">*</span> -->
+                      </label>
+                      <!-- Input alpha-->
+                      <AppInput
+                        v-model="options.foregroundAlpha"
+                        :required="true"
+                        type="number"
+                        step=".01"
+                        max="1"
+                        name="foregroundAlpha"
+                        :default-value="options.foregroundAlpha"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <!-- Color sample -->
-                <div
-                  :style="{
-                    backgroundColor: `rgba(${options.foreground}, ${options.foregroundAlpha})`,
-                  }"
-                  class="w-full h-12 border border-neutral-300"
-                ></div>
-              </div>
+                <!-- BACKGROUND -->
+                <div class="space-y-2">
+                  <div class="flex items-end space-x-3">
+                    <!-- RGB -->
+                    <div class="w-full space-y-1">
+                      <!-- Label -->
+                      <label for="background" class="text-base text-neutral-600"
+                        >Background Colour (rgb)
+                        <!-- <span class="text-2xl font-normal text-red-600">*</span> -->
+                      </label>
+                      <AppInputColor
+                        v-model="options.background"
+                        :required="true"
+                        name="foreground"
+                        :default-value="options.background"
+                        :sample-color="options.background"
+                        :sample-alpha="options.backgroundAlpha"
+                        class="w-full"
+                      />
+                    </div>
 
-              <!-- BACKGROUND -->
-              <div class="space-y-2">
-                <div class="flex items-end space-x-3">
-                  <!-- RGB -->
-                  <div class="space-y-1">
-                    <!-- Label -->
-                    <label
-                      for="background"
-                      class="text-base font-bold text-neutral-600"
-                      >Background Colour (rgb)
-                      <span class="text-2xl font-normal text-red-600">*</span>
-                    </label>
-                    <!-- Input -->
-                    <AppInput
-                      v-model="options.background"
-                      :required="true"
-                      name="background"
-                      :default-value="options.background"
-                    />
+                    <!-- ALPHA -->
+                    <div class="w-1/4 space-y-1">
+                      <!-- Label -->
+                      <label
+                        for="backgroundAlpha"
+                        class="text-base text-neutral-600"
+                      >
+                        Alpha
+                        <!-- <span class="text-2xl font-normal text-red-600">*</span> -->
+                      </label>
+                      <!-- Input alpha -->
+                      <AppInput
+                        v-model="options.backgroundAlpha"
+                        :required="true"
+                        type="number"
+                        step=".01"
+                        max="1"
+                        name="backgroundAlpha"
+                        :default-value="options.backgroundAlpha"
+                      />
+                    </div>
                   </div>
+                </div>
 
-                  <!-- ALPHA -->
-                  <div class="w-1/4 space-y-1">
-                    <!-- Label -->
-                    <label
-                      for="backgroundAlpha"
-                      class="text-base font-bold text-neutral-600"
+                <!-- BUTTONS -->
+                <div class="flex space-x-5">
+                  <!-- BUTTON CHECK -->
+                  <AppButton type="submit" label="CHECK" />
+
+                  <!-- BUTTON CLEAR -->
+                  <AppButton
+                    variant="gost"
+                    label="CLEAR"
+                    @click="onClearInputs"
+                  />
+
+                  <!-- BUTTON SWITCH -->
+                  <AppButton
+                    variant="gost"
+                    label="Switch"
+                    @click="onSwitchColors"
+                  />
+                </div>
+              </form>
+
+              <!-- RESULTS -->
+              <div
+                class="w-1/2 p-5 space-y-5 border rounded-r-2xl border-neutral-300"
+              >
+                <!-- CONTRAST RATIO -->
+                <div class="pb-3 text-2xl text-neutral-600">
+                  <span class="font-bold"
+                    >{{ ratio }}
+                    <span class="font-normal">Contrast Ratio</span></span
+                  >
+                </div>
+
+                <!-- <hr class="border-neutral-300" /> -->
+
+                <!-- NORMAL TEXT -->
+                <div class="space-y-1">
+                  <!-- Normal text -->
+                  <div class="space-x-3 text-base font-bold">
+                    <span class="text-neutral-600">Normal text:</span>
+                    <span
+                      class="font-bold"
+                      :class="[
+                        AA.includes('Fail') ? 'text-red-600' : 'text-green-700',
+                      ]"
+                      >{{ AA }},</span
                     >
-                      Alpha
-                      <span class="text-2xl font-normal text-red-600">*</span>
-                    </label>
-                    <!-- Input alpha -->
-                    <AppInput
-                      v-model="options.backgroundAlpha"
-                      :required="true"
-                      type="number"
-                      step=".01"
-                      max="1"
-                      name="backgroundAlpha"
-                      :default-value="options.backgroundAlpha"
-                    />
+                    <span
+                      class="font-bold"
+                      :class="[
+                        AAA.includes('Fail')
+                          ? 'text-red-600'
+                          : 'text-green-700',
+                      ]"
+                      >{{ AAA }}</span
+                    >
+                  </div>
+
+                  <div
+                    :style="{
+                      backgroundColor: `rgba(${resultBackground}, ${resultBackgroundAlpha})`,
+                    }"
+                    class="flex items-center w-full h-12 px-5 border border-neutral-300"
+                  >
+                    <p
+                      :style="{
+                        color: `rgba(${resultForegound}, ${resultForegroundAlpha})`,
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                      }"
+                    >
+                      The quick brown fox jumps over the lazy dog.
+                    </p>
                   </div>
                 </div>
-                <!-- Color sample -->
-                <div
-                  :style="{
-                    backgroundColor: `rgba(${options.background}, ${options.backgroundAlpha})`,
-                  }"
-                  class="w-full h-12 border border-neutral-300"
-                ></div>
-              </div>
 
-              <!-- BUTTONS -->
-              <div class="flex space-x-5">
-                <!-- BUTTON CHECK -->
-                <AppButton type="submit" label="CHECK" />
+                <!-- LARGE TEXT -->
+                <div class="space-y-1">
+                  <!-- Normal text -->
+                  <div class="space-x-3 text-base font-bold">
+                    <span class="text-neutral-600">Large text:</span>
+                    <span
+                      class="font-bold"
+                      :class="[
+                        AA.includes('Fail') ? 'text-red-600' : 'text-green-700',
+                      ]"
+                      >{{ AA }},</span
+                    >
+                    <span
+                      class="font-bold"
+                      :class="[
+                        AAA.includes('Fail')
+                          ? 'text-red-600'
+                          : 'text-green-700',
+                      ]"
+                      >{{ AAA }}</span
+                    >
+                  </div>
 
-                <!-- BUTTON CLEAR -->
-                <AppButton
-                  variant="gost"
-                  label="CLEAR"
-                  @click="onClearInputs"
-                />
-              </div>
-            </form>
-
-            <!-- RESULTS -->
-            <div
-              class="w-1/2 p-5 space-y-5 border rounded-lg border-neutral-300"
-            >
-              <!-- CONTRAST RATIO -->
-              <div class="text-2xl text-neutral-600">
-                <span class="font-bold"
-                  >{{ ratio }}
-                  <span class="font-normal">Contrast Ratio</span></span
-                >
-              </div>
-
-              <hr class="border-neutral-300" />
-
-              <!-- NORMAL TEXT -->
-              <div class="space-y-1">
-                <!-- Normal text -->
-                <div class="space-x-3 text-base font-bold">
-                  <span class="text-neutral-600">Normal text:</span>
-                  <span
-                    class="font-bold"
-                    :class="[
-                      AA.includes('Fail') ? 'text-red-600' : 'text-green-700',
-                    ]"
-                    >{{ AA }},</span
-                  >
-                  <span
-                    class="font-bold"
-                    :class="[
-                      AAA.includes('Fail') ? 'text-red-600' : 'text-green-700',
-                    ]"
-                    >{{ AAA }}</span
-                  >
-                </div>
-
-                <div
-                  :style="{
-                    backgroundColor: `rgba(${resultBackground}, ${resultBackgroundAlpha})`,
-                  }"
-                  class="flex items-center w-full h-12 px-5 border border-neutral-300"
-                >
-                  <p
+                  <div
                     :style="{
-                      color: `rgba(${resultForegound}, ${resultForegroundAlpha})`,
-                      fontSize: '16px',
-                      fontStyle: 'normal',
+                      backgroundColor: `rgba(${resultBackground}, ${resultBackgroundAlpha})`,
                     }"
+                    class="flex items-center w-full h-12 px-5 border border-neutral-300"
                   >
-                    The quick brown fox jumps over the lazy dog.
-                  </p>
+                    <p
+                      :style="{
+                        color: `rgba(${resultForegound}, ${resultForegroundAlpha})`,
+                        fontSize: '18.66px',
+                      }"
+                      class="w-full font-bold line-clamp-1"
+                    >
+                      The quick brown fox jumps over the lazy dog.
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              <!-- LARGE TEXT -->
-              <div class="space-y-1">
-                <!-- Normal text -->
-                <div class="space-x-3 text-base font-bold">
-                  <span class="text-neutral-600">Large text:</span>
-                  <span
-                    class="font-bold"
-                    :class="[
-                      AA.includes('Fail') ? 'text-red-600' : 'text-green-700',
-                    ]"
-                    >{{ AA }},</span
-                  >
-                  <span
-                    class="font-bold"
-                    :class="[
-                      AAA.includes('Fail') ? 'text-red-600' : 'text-green-700',
-                    ]"
-                    >{{ AAA }}</span
-                  >
-                </div>
-
-                <div
-                  :style="{
-                    backgroundColor: `rgba(${resultBackground}, ${resultBackgroundAlpha})`,
-                  }"
-                  class="flex items-center w-full h-12 px-5 border border-neutral-300"
-                >
-                  <p
-                    :style="{
-                      color: `rgba(${resultForegound}, ${resultForegroundAlpha})`,
-                      fontSize: '18.66px',
-                    }"
-                    class="w-full font-bold line-clamp-1"
-                  >
-                    The quick brown fox jumps over the lazy dog.
-                  </p>
-                </div>
-              </div>
-
-              <!-- REF -->
-              <div class="space-y-4 text-base pt-7 text-neutral-600">
-                <p>
-                  <span class="font-bold">Large text</span> is defined as 14
-                  point (typically 18.66px) and bold or larger, or 18 point
-                  (typically 24px) or larger.
-                </p>
-                <p>
-                  <span class="font-bold">WCAG 2.0 level AA</span> requires a
-                  contrast ratio of at least 4.5:1 for normal text and 3:1 for
-                  large text.
-                </p>
-                <p>
-                  <span class="font-bold">WCAG 2.0 level AAA</span> requires a
-                  contrast ratio of at least 7:1 for normal text and 4.5:1 for
-                  large text.
-                </p>
               </div>
             </div>
+
+            <!-- REF -->
+            <ul
+              class="px-5 py-4 space-y-2 text-base list-disc list-inside rounded-2xl text-neutral-600 bg-slate-100"
+            >
+              <div>NOTE</div>
+              <li>
+                <span class="font-bold">Large text</span> is defined as 14 point
+                (typically 18.66px) and bold or larger, or 18 point (typically
+                24px) or larger.
+              </li>
+              <li>
+                <span class="font-bold">WCAG 2.0 level AA</span> requires a
+                contrast ratio of at least 4.5:1 for normal text and 3:1 for
+                large text.
+              </li>
+              <li>
+                <span class="font-bold">WCAG 2.0 level AAA</span> requires a
+                contrast ratio of at least 7:1 for normal text and 4.5:1 for
+                large text.
+              </li>
+
+              <p class="pl-[22px]">
+                Refference:
+                <NuxtLink
+                  to="https://webaim.org/resources/contrastchecker/"
+                  external
+                  target="blank"
+                  class="a-link"
+                  >WCGA 2</NuxtLink
+                >
+              </p>
+            </ul>
           </section>
         </div>
       </template>
@@ -376,6 +389,19 @@ function onClearInputs() {
   AA.value = contrastAA.value
   // Set AAA
   AAA.value = contrastAAA.value
+}
+
+//
+
+// SWITCH
+const foregroundSwithced = ref(null)
+const backgroundSwithced = ref(null)
+function onSwitchColors() {
+  foregroundSwithced.value = options.value.background
+  backgroundSwithced.value = options.value.foreground
+  //
+  options.value.foreground = foregroundSwithced.value
+  options.value.background = backgroundSwithced.value
 }
 </script>
 

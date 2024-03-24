@@ -1,7 +1,7 @@
 <template>
   <button
     :type="type"
-    class="w-full h-12 rounded-full"
+    class="w-full h-12 rounded-xl"
     :class="[
       variant === 'solid' &&
         'text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-700',
