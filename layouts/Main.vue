@@ -7,7 +7,7 @@
     </header>
 
     <!-- Wrapper H1, main -->
-    <div class="px-5 py-20 space-y-10">
+    <div class="px-5 pt-20 pb-40 space-y-10">
       <!-- HEADLINE H1 -->
       <div class="mx-auto" :class="'max-w-[736px] xl:max-w-[988px]'">
         <slot name="headline" />
@@ -26,7 +26,7 @@
     >
       <p>
         Colour Contrast in Web Pages and Aplications. Copyright © 2024 Cristian
-        Ciobanu.
+        Ciobanu. University of Bolton.
       </p>
     </footer>
   </div>

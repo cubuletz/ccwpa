@@ -256,14 +256,15 @@
               </li>
 
               <p class="pl-[22px]">
-                Refference:
+                Reference:
                 <NuxtLink
                   to="https://webaim.org/resources/contrastchecker/"
                   external
                   target="blank"
                   class="a-link"
-                  >WCGA 2</NuxtLink
                 >
+                  WCAG 2.0
+                </NuxtLink>
               </p>
             </ul>
           </section>

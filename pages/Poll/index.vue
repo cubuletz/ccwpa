@@ -3,9 +3,14 @@
     <NuxtLayout name="main">
       <!-- MAIN -->
       <template #headline>
-        <div class="space-y-10">
+        <div class="flex items-start space-x-2">
           <!-- HEADLINE H1 -->
           <h1 class="text-4xl font-bold">{{ pageTitle }}</h1>
+
+          <!-- Poll -->
+          <div class="font-bold text-neutral-600">
+            {{ pollResults?.length }}
+          </div>
         </div>
       </template>
 
@@ -52,11 +57,17 @@
                   <label for="ocupation" class="text-base text-neutral-600"
                     >Ocupation</label
                   >
-                  <AppInput
+                  <AppSelect
+                    v-model="ocupation"
+                    name="ocupation"
+                    :options="ocupations"
+                    :required="true"
+                  />
+                  <!-- <AppInput
                     v-model="ocupation"
                     name="ocupation"
                     :required="true"
-                  />
+                  /> -->
                 </div>
 
                 <!-- Age -->
@@ -66,11 +77,17 @@
                     class="text-base text-neutral-600"
                     >Visual Capability</label
                   >
-                  <AppInput
+                  <AppSelect
+                    v-model="visualCapability"
+                    name="visualCapability"
+                    :options="['Good', 'Bad']"
+                    :required="true"
+                  />
+                  <!--  <AppInput
                     v-model="visualCapability"
                     name="visualCapability"
                     :required="true"
-                  />
+                  /> -->
                 </div>
               </div>
 
@@ -80,7 +97,7 @@
               >
                 <div class="flex items-center">
                   <div
-                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border border-neutral-200"
+                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
                   >
                     <p class="text-base text-[#707070]">
                       The quick brown fox jumps over the lazy dog.
@@ -158,7 +175,7 @@
               >
                 <div class="flex items-center">
                   <div
-                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border border-neutral-200"
+                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
                   >
                     <p class="text-base text-[#6AA84F]">
                       The quick brown fox jumps over the lazy dog.
@@ -236,7 +253,7 @@
               >
                 <div class="flex items-center">
                   <div
-                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border border-neutral-200"
+                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
                   >
                     <p class="text-base text-[#3D85C6]">
                       The quick brown fox jumps over the lazy dog.
@@ -317,6 +334,21 @@
                   @click="onCancelForm"
                 />
               </div>
+
+              <!-- Button clear local storage TODO: remove or comment -->
+              <AppButton
+                variant="gost"
+                label="CLEAN LOCAL STORAGE"
+                @click="onCleanLocalStorage"
+              />
+
+              <!-- Alert feedback -->
+              <!-- <div
+                v-if="isFeedbackVisible"
+                class="px-4 py-3 text-base text-green-700 border border-green-600"
+              >
+                Successfully submitted. Thanks for your feedback.
+              </div> -->
             </form>
           </section>
         </div>
@@ -332,6 +364,11 @@ export default {
 </script>
 
 <script setup>
+// Ocupations
+import ocupations from '~/assets/occupations.json'
+
+//
+
 // Page title
 const pageTitle = 'Poll'
 
@@ -361,12 +398,37 @@ const colorOne = ref(null)
 const colorTwo = ref(null)
 const colorThree = ref(null)
 
+// Feddback message
+// const isFeedbackVisible = ref(false)
+// Hide feedback message
+/* watch(firstName, () => (isFeedbackVisible.value = false))
+watch(age, () => (isFeedbackVisible.value = false))
+watch(ocupation, () => (isFeedbackVisible.value = false))
+watch(visualCapability, () => (isFeedbackVisible.value = false))
+watch(colorOne, () => (isFeedbackVisible.value = false))
+watch(colorTwo, () => (isFeedbackVisible.value = false))
+watch(colorThree, () => (isFeedbackVisible.value = false)) */
+
 // Submit form
 function onSubmitForm() {
-  alert('SUBMITED')
+  pollResults.value.push({
+    firstName: firstName.value,
+    age: age.value,
+    ocupation: ocupation.value,
+    visualCapability: visualCapability.value,
+    //
+    colorOne: colorOne.value,
+    colorTwo: colorTwo.value,
+    colorThree: colorThree.value,
+  })
+  // Save pollResults on localStorage
+  localStorage.setItem('pollResults', JSON.stringify(pollResults.value))
 
   // Reset form
   onCancelForm()
+
+  // Show feedback message
+  // isFeedbackVisible.value = true
 }
 
 // Cancel form
@@ -379,6 +441,31 @@ function onCancelForm() {
   colorOne.value = null
   colorTwo.value = null
   colorThree.value = null
+
+  // Hide feedback message
+  // isFeedbackVisible.value = false
+}
+
+//
+
+// Get poll results from localStorage
+const pollResults = ref(
+  JSON.parse(localStorage.getItem('pollResults'))?.length
+    ? JSON.parse(localStorage.getItem('pollResults'))
+    : []
+)
+
+// Clean localStorage TODO: remove or comment
+function onCleanLocalStorage() {
+  localStorage.removeItem('pollResults')
+  pollResults.value = []
+}
+
+// TODO: remove or comment
+if (pollResults.value?.length) {
+  console.log('🍎 ', pollResults.value)
+} else {
+  console.log('🍎 No Poll Results')
 }
 </script>
 

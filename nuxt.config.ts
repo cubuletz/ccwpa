@@ -9,10 +9,10 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
 
   // DEV SERVER
-  /*  devServer: {
+  devServer: {
     // Localhost
     port: 8000, // default 3000
-  }, */
+  },
 
   //
 
