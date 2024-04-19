@@ -70,13 +70,13 @@
                     {{ result.visualCapability }}
                   </td>
                   <td class="px-3 py-2 text-center border border-neutral-300">
-                    {{ result.colorOne }}
+                    {{ resultScale(result.colorOne) }}
                   </td>
                   <td class="px-3 py-2 text-center border border-neutral-300">
-                    {{ result.colorTwo }}
+                    {{ resultScale(result.colorTwo) }}
                   </td>
                   <td class="px-3 py-2 text-center border border-neutral-300">
-                    {{ result.colorThree }}
+                    {{ resultScale(result.colorThree) }}
                   </td>
                 </tr>
               </tbody>
@@ -120,6 +120,21 @@ const pollResults = ref(
     ? JSON.parse(localStorage.getItem('pollResults'))
     : []
 )
+
+// Result scale
+const resultScale = (result) => {
+  let scale
+  if (result === 3) {
+    scale = 'easy'
+  }
+  if (result === 2) {
+    scale = 'moderate'
+  }
+  if (result === 1) {
+    scale = 'difficult'
+  }
+  return scale
+}
 </script>
 
 <style lang="postcss" scoped></style>

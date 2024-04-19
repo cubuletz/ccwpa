@@ -266,7 +266,7 @@
                   name="color_three"
                   class="flex items-center mx-auto space-x-5 w-max"
                 >
-                  <!-- Poor -->
+                  <!-- Easy -->
                   <div class="flex items-center space-x-1">
                     <input
                       v-model="colorThree"
@@ -285,7 +285,7 @@
                     </label>
                   </div>
 
-                  <!-- Good -->
+                  <!-- Moderate -->
                   <div class="flex items-center space-x-1">
                     <input
                       v-model="colorThree"
@@ -304,7 +304,7 @@
                     </label>
                   </div>
 
-                  <!-- Very Good -->
+                  <!-- Difficult -->
                   <div class="flex items-center space-x-1">
                     <input
                       v-model="colorThree"
