@@ -5,14 +5,14 @@ export default defineNuxtConfig({
   // SSR
   ssr: false,
 
-  // DEVTOOLSgis
+  // DEVTOOLS
   devtools: { enabled: false },
 
   // DEV SERVER
-  devServer: {
+  /*  devServer: {
     // Localhost
     port: 8000, // default 3000
-  },
+  }, */
 
   //
 
