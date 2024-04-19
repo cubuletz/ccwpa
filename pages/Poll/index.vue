@@ -16,6 +16,64 @@
           <section class="w-1/2 space-y-5">
             <!-- Form -->
             <form class="space-y-5" @submit.prevent="onSubmitForm">
+              <!-- Name & Age -->
+              <div class="flex items-end space-x-5">
+                <!-- First name -->
+                <div class="w-full space-y-1">
+                  <label for="firstName" class="text-base text-neutral-600"
+                    >First Name</label
+                  >
+                  <AppInput
+                    v-model="firstName"
+                    name="firstName"
+                    :required="true"
+                  />
+                </div>
+
+                <!-- Age -->
+                <div class="w-full space-y-1">
+                  <label for="age" class="text-base text-neutral-600"
+                    >Age</label
+                  >
+                  <AppInput
+                    v-model="age"
+                    type="number"
+                    min="1"
+                    name="age"
+                    :required="true"
+                  />
+                </div>
+              </div>
+
+              <!-- Ocupation & Visual capability -->
+              <div class="flex items-end space-x-5">
+                <!-- First name -->
+                <div class="w-full space-y-1">
+                  <label for="ocupation" class="text-base text-neutral-600"
+                    >Ocupation</label
+                  >
+                  <AppInput
+                    v-model="ocupation"
+                    name="ocupation"
+                    :required="true"
+                  />
+                </div>
+
+                <!-- Age -->
+                <div class="w-full space-y-1">
+                  <label
+                    for="visualCapability"
+                    class="text-base text-neutral-600"
+                    >Visual Capability</label
+                  >
+                  <AppInput
+                    v-model="visualCapability"
+                    name="visualCapability"
+                    :required="true"
+                  />
+                </div>
+              </div>
+
               <!-- *** 1st -->
               <div
                 class="px-5 pt-5 pb-4 space-y-4 border rounded-2xl border-neutral-300"
@@ -50,7 +108,7 @@
                       for="color_one"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Poor
+                      Easy
                     </label>
                   </div>
 
@@ -69,7 +127,7 @@
                       for="color_one"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Good
+                      Moderate
                     </label>
                   </div>
 
@@ -88,7 +146,7 @@
                       for="color_one"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Very Good
+                      Difficult
                     </label>
                   </div>
                 </fieldset>
@@ -128,7 +186,7 @@
                       for="color_two"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Poor
+                      Easy
                     </label>
                   </div>
 
@@ -147,7 +205,7 @@
                       for="color_two"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Good
+                      Moderate
                     </label>
                   </div>
 
@@ -166,7 +224,7 @@
                       for="color_two"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Very Good
+                      Difficult
                     </label>
                   </div>
                 </fieldset>
@@ -206,7 +264,7 @@
                       for="color_three"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Poor
+                      Easy
                     </label>
                   </div>
 
@@ -225,7 +283,7 @@
                       for="color_three"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Good
+                      Moderate
                     </label>
                   </div>
 
@@ -244,7 +302,7 @@
                       for="color_three"
                       class="text-base cursor-pointer text-neutral-600"
                     >
-                      Very Good
+                      Difficult
                     </label>
                   </div>
                 </fieldset>
@@ -294,7 +352,10 @@ definePageMeta({
 //
 
 // v-model
-const name = ref('')
+const firstName = ref('')
+const age = ref(null)
+const ocupation = ref('')
+const visualCapability = ref('')
 //
 const colorOne = ref(null)
 const colorTwo = ref(null)
@@ -310,6 +371,11 @@ function onSubmitForm() {
 
 // Cancel form
 function onCancelForm() {
+  firstName.value = ''
+  age.value = ''
+  ocupation.value = ''
+  visualCapability.value = ''
+  //
   colorOne.value = null
   colorTwo.value = null
   colorThree.value = null

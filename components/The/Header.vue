@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between w-full h-16 px-5 border-b border-neutral-300"
+    class="flex items-center justify-between w-full h-16 px-5 bg-white border-b border-neutral-300"
   >
     <div class="flex items-center space-x-40">
       <!-- HOME -->
