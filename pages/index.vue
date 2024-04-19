@@ -31,7 +31,7 @@
           <div class="w-1/2 space-y-1">
             <!-- Hero image -->
             <img src="/hero.jpg" alt="" />
-            <p class="text-sm text-right">
+            <p class="text-sm text-right text-neutral-600">
               Free image from
               <a
                 href="https://unsplash.com/photos/red-white-and-green-color-pencils-O2u6gA2esAI"
