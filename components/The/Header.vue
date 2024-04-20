@@ -4,9 +4,11 @@
   >
     <div class="flex items-center space-x-40">
       <!-- HOME -->
-      <NuxtLink to="/" class="text-xl font-bold text-neutral-800"
-        >CCWPA</NuxtLink
-      >
+      <NuxtLink to="/" class="flex items-center space-x-1 text-xl font-bold text-neutral-800">
+        <img src="/logo.png" alt="" class="w-6 h-6" />
+        <span>CCWPA</span>
+      </NuxtLink>
+      
 
       <div class="space-x-5">
        <!-- CONTRAST CHECKER -->

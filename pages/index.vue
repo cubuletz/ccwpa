@@ -3,13 +3,13 @@
     <NuxtLayout name="main">
       <!-- H1 -->
       <template #headline>
-        <div class="flex items-start space-x-5">
+        <div class="flex items-start mt-10 space-x-5">
           <div class="w-1/2 space-y-4">
             <!-- HEADLINE H1 -->
             <h1 class="text-5xl font-bold text-neutral-800">
               Colour Contrast <br />
-              in Web Pages <br />
-              and Aplications
+              in Web Pages & <br />
+              Aplications
             </h1>
             <!-- Subtitle -->
             <p class="text-xl text-neutral-600">

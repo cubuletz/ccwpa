@@ -1,0 +1,17 @@
+{
+  "colourOne": {
+    "foreground": "#707070",
+    "background": "#FFFFFF",
+    "contrast": "4.5:1"
+  },
+  "colourTwo": {
+    "foreground": "#6AA84F",
+    "background": "#FFFFFF",
+    "contrast": "4.5:1"
+  },
+  "colourThree": {
+    "foreground": "#3D85C6",
+    "background": "#FFFFFF",
+    "contrast": "4.5:1"
+  }
+}

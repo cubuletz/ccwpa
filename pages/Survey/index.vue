@@ -99,7 +99,10 @@
                   <div
                     class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
                   >
-                    <p class="text-base text-[#707070]">
+                    <p
+                      class="text-base"
+                      :style="{ color: surveyColours.colourOne.foreground }"
+                    >
                       The quick brown fox jumps over the lazy dog.
                     </p>
                   </div>
@@ -113,7 +116,7 @@
                   <!-- Poor -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorOne"
+                      v-model="colourOne"
                       type="radio"
                       id="color_one"
                       name="color_one"
@@ -132,7 +135,7 @@
                   <!-- Good -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorOne"
+                      v-model="colourOne"
                       type="radio"
                       id="color_one"
                       name="color_one"
@@ -151,7 +154,7 @@
                   <!-- Very Good -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorOne"
+                      v-model="colourOne"
                       type="radio"
                       id="color_one"
                       name="color_one"
@@ -177,7 +180,10 @@
                   <div
                     class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
                   >
-                    <p class="text-base text-[#6AA84F]">
+                    <p
+                      class="text-base"
+                      :style="{ color: surveyColours.colourTwo.foreground }"
+                    >
                       The quick brown fox jumps over the lazy dog.
                     </p>
                   </div>
@@ -191,7 +197,7 @@
                   <!-- Poor -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorTwo"
+                      v-model="colourTwo"
                       type="radio"
                       id="color_two"
                       name="color_two"
@@ -210,7 +216,7 @@
                   <!-- Good -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorTwo"
+                      v-model="colourTwo"
                       type="radio"
                       id="color_two"
                       name="color_two"
@@ -229,7 +235,7 @@
                   <!-- Very Good -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorTwo"
+                      v-model="colourTwo"
                       type="radio"
                       id="color_two"
                       name="color_two"
@@ -255,7 +261,10 @@
                   <div
                     class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
                   >
-                    <p class="text-base text-[#3D85C6]">
+                    <p
+                      class="text-base"
+                      :style="{ color: surveyColours.colourThree.foreground }"
+                    >
                       The quick brown fox jumps over the lazy dog.
                     </p>
                   </div>
@@ -269,7 +278,7 @@
                   <!-- Easy -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorThree"
+                      v-model="colourThree"
                       type="radio"
                       id="color_three"
                       name="color_three"
@@ -288,7 +297,7 @@
                   <!-- Moderate -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorThree"
+                      v-model="colourThree"
                       type="radio"
                       id="color_three"
                       name="color_three"
@@ -307,7 +316,7 @@
                   <!-- Difficult -->
                   <div class="flex items-center space-x-1">
                     <input
-                      v-model="colorThree"
+                      v-model="colourThree"
                       type="radio"
                       id="color_three"
                       name="color_three"
@@ -364,6 +373,11 @@ export default {
 </script>
 
 <script setup>
+// Assets
+import surveyColours from '~/assets/surveyColours.json'
+
+//
+
 // Ocupations
 import ocupations from '~/assets/occupations.json'
 
@@ -394,9 +408,9 @@ const age = ref(null)
 const ocupation = ref('')
 const visualCapability = ref('')
 //
-const colorOne = ref(null)
-const colorTwo = ref(null)
-const colorThree = ref(null)
+const colourOne = ref(null)
+const colourTwo = ref(null)
+const colourThree = ref(null)
 
 // Feddback message
 // const isFeedbackVisible = ref(false)
@@ -405,9 +419,9 @@ const colorThree = ref(null)
 watch(age, () => (isFeedbackVisible.value = false))
 watch(ocupation, () => (isFeedbackVisible.value = false))
 watch(visualCapability, () => (isFeedbackVisible.value = false))
-watch(colorOne, () => (isFeedbackVisible.value = false))
-watch(colorTwo, () => (isFeedbackVisible.value = false))
-watch(colorThree, () => (isFeedbackVisible.value = false)) */
+watch(colourOne, () => (isFeedbackVisible.value = false))
+watch(colourTwo, () => (isFeedbackVisible.value = false))
+watch(colourThree, () => (isFeedbackVisible.value = false)) */
 
 // Submit form
 function onSubmitForm() {
@@ -417,9 +431,9 @@ function onSubmitForm() {
     ocupation: ocupation.value,
     visualCapability: visualCapability.value,
     //
-    colorOne: colorOne.value,
-    colorTwo: colorTwo.value,
-    colorThree: colorThree.value,
+    colourOne: colourOne.value,
+    colourTwo: colourTwo.value,
+    colourThree: colourThree.value,
   })
   // Save surveyResults on localStorage
   localStorage.setItem('surveyResults', JSON.stringify(surveyResults.value))
@@ -438,9 +452,9 @@ function onCancelForm() {
   ocupation.value = ''
   visualCapability.value = ''
   //
-  colorOne.value = null
-  colorTwo.value = null
-  colorThree.value = null
+  colourOne.value = null
+  colourTwo.value = null
+  colourThree.value = null
 
   // Hide feedback message
   // isFeedbackVisible.value = false

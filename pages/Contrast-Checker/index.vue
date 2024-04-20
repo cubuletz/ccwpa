@@ -31,7 +31,7 @@
                     <div class="w-full space-y-1">
                       <!-- Label -->
                       <label for="foreground" class="text-base text-neutral-600"
-                        >Foreground Colour (rgb)
+                        >Foreground RGB Colour (123, 123, 123)
                         <!-- <span class="text-2xl font-normal text-red-600">*</span> -->
                       </label>
 
@@ -43,6 +43,7 @@
                         :default-value="options.foreground"
                         :sample-color="options.foreground"
                         :sample-alpha="options.foregroundAlpha"
+                        pattern="^\d{1,3}, \d{1,3}, \d{1,3}"
                         class="w-full"
                       />
                     </div>
@@ -77,7 +78,7 @@
                     <div class="w-full space-y-1">
                       <!-- Label -->
                       <label for="background" class="text-base text-neutral-600"
-                        >Background Colour (rgb)
+                        >Background RGB Colour (123, 123, 123)
                         <!-- <span class="text-2xl font-normal text-red-600">*</span> -->
                       </label>
                       <AppInputColor
@@ -87,6 +88,7 @@
                         :default-value="options.background"
                         :sample-color="options.background"
                         :sample-alpha="options.backgroundAlpha"
+                        pattern="\d{1,3}, \d{1,3}, \d{1,3}"
                         class="w-full"
                       />
                     </div>

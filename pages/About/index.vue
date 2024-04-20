@@ -14,7 +14,7 @@
         <div class="space-y-10">
           <!-- SECTION 1 -->
           <section class="space-y-5">
-            <div class="space-y-2 text-base text-neutral-600">
+            <div class="space-y-3 text-base text-neutral-600">
               <p>
                 Welcome to CCWPA, a tool designed to enhance the accessibility
                 of digital content across the web. The application addresses
@@ -33,7 +33,7 @@
                 including those with impaired vision.
               </p>
               <p>
-                What sets CCWPA apart is the interactive 'User Testing Feature.
+                What sets CCWPA apart is the interactive 'User Testing Feature'.
                 This tool allows real-world users to engage directly with
                 different colour contrasts and provide feedback on their
                 effectiveness in real-time scenarios. This approach not only

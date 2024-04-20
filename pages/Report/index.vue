@@ -18,8 +18,8 @@
               class="w-full border border-collapse table-auto border-neutral-300"
             >
               <!-- Caption -->
-              <caption class="mb-5 text-base caption-top text-neutral-600">
-                Table: Survey results.
+              <caption class="mb-2 text-base caption-top text-neutral-600">
+                Survey results table.
               </caption>
 
               <!-- Head -->
@@ -36,16 +36,33 @@
                     Visual Capability
                   </th>
                   <th class="p-3 border border-neutral-300">
-                    Color 1
-                    <div class="w-full h-3 mt-1 bg-[#707070]"></div>
+                    Sample 1
+                    <!-- <div
+                      class="w-full h-3 mt-1"
+                      :style="{
+                        backgroundColor: surveyColours.colourOne.foreground,
+                      }"
+                    ></div> -->
                   </th>
+
                   <th class="p-3 border border-neutral-300">
-                    Color 2
-                    <div class="w-full h-3 mt-1 bg-[#6AA84F]"></div>
+                    Sample 2
+                    <!--  <div
+                      class="w-full h-3 mt-1"
+                      :style="{
+                        backgroundColor: surveyColours.colourTwo.foreground,
+                      }"
+                    ></div> -->
                   </th>
+
                   <th class="p-3 border border-neutral-300">
-                    Color 3
-                    <div class="w-full h-3 mt-1 bg-[#3D85C6]"></div>
+                    Sample 3
+                    <!--  <div
+                      class="w-full h-3 mt-1"
+                      :style="{
+                        backgroundColor: surveyColours.colourThree.foreground,
+                      }"
+                    ></div> -->
                   </th>
                 </tr>
               </thead>
@@ -70,13 +87,13 @@
                     {{ result.visualCapability }}
                   </td>
                   <td class="px-3 py-2 text-center border border-neutral-300">
-                    {{ resultScale(result.colorOne) }}
+                    {{ resultScale(result.colourOne) }}
                   </td>
                   <td class="px-3 py-2 text-center border border-neutral-300">
-                    {{ resultScale(result.colorTwo) }}
+                    {{ resultScale(result.colourTwo) }}
                   </td>
                   <td class="px-3 py-2 text-center border border-neutral-300">
-                    {{ resultScale(result.colorThree) }}
+                    {{ resultScale(result.colourThree) }}
                   </td>
                 </tr>
               </tbody>
@@ -95,6 +112,11 @@ export default {
 </script>
 
 <script setup>
+// Assets
+import surveyColours from '~/assets/surveyColours.json'
+
+//
+
 // Page title
 const pageTitle = 'Report'
 

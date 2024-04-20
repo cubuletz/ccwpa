@@ -10,6 +10,7 @@
     :placeholder="placeholder"
     :required="required"
     :autocomplete="autocomplete"
+    :pattern="pattern"
     class="w-full h-12 p-3 border rounded-xl text-neutral-800 border-neutral-400 hover:border-neutral-800"
   />
 </template>
@@ -56,6 +57,11 @@ export default {
     max: {
       type: String,
       default: null,
+    },
+    // Native 'pattern' attribute
+    pattern: {
+      type: String,
+      default: null, // '.*\S+.*',
     },
     // Default value
     defaultValue: {

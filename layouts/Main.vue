@@ -22,8 +22,9 @@
 
     <!-- FOOTER -->
     <footer
-      class="fixed bottom-0 flex items-center justify-center w-full h-16 p-5 text-base bg-white border-t border-neutral-300 text-neutral-600"
+      class="fixed bottom-0 flex items-center justify-center w-full h-16 p-5 space-x-1 text-base bg-white border-t border-neutral-300 text-neutral-600"
     >
+      <img src="/logo.png" alt="" class="w-5 h-5" />
       <p>
         Colour Contrast in Web Pages and Aplications. Copyright © 2024 Cristian
         Ciobanu. University of Bolton.

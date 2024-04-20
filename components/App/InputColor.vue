@@ -11,6 +11,7 @@
       :placeholder="placeholder"
       :required="required"
       :autocomplete="autocomplete"
+      :pattern="pattern"
       class="w-full h-12 p-3 border rounded-l-xl text-neutral-800 border-neutral-400 hover:border-neutral-800"
     />
 
@@ -67,6 +68,11 @@ export default {
     max: {
       type: String,
       default: null,
+    },
+    // Native 'pattern' attribute
+    pattern: {
+      type: String,
+      default: null, // '.*\S+.*',
     },
     // Default value
     defaultValue: {
