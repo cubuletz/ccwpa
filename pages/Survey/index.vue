@@ -7,9 +7,9 @@
           <!-- HEADLINE H1 -->
           <h1 class="text-4xl font-bold">{{ pageTitle }}</h1>
 
-          <!-- Poll -->
+          <!-- Survey -->
           <div class="font-bold text-neutral-600">
-            {{ pollResults?.length }}
+            {{ surveyResults?.length }}
           </div>
         </div>
       </template>
@@ -359,7 +359,7 @@
 
 <script>
 export default {
-  name: 'PagePoll',
+  name: 'PageSurvey',
 }
 </script>
 
@@ -370,7 +370,7 @@ import ocupations from '~/assets/occupations.json'
 //
 
 // Page title
-const pageTitle = 'Poll'
+const pageTitle = 'Survey'
 
 // PAGE HEAD
 useHead({
@@ -411,7 +411,7 @@ watch(colorThree, () => (isFeedbackVisible.value = false)) */
 
 // Submit form
 function onSubmitForm() {
-  pollResults.value.push({
+  surveyResults.value.push({
     firstName: firstName.value,
     age: age.value,
     ocupation: ocupation.value,
@@ -421,8 +421,8 @@ function onSubmitForm() {
     colorTwo: colorTwo.value,
     colorThree: colorThree.value,
   })
-  // Save pollResults on localStorage
-  localStorage.setItem('pollResults', JSON.stringify(pollResults.value))
+  // Save surveyResults on localStorage
+  localStorage.setItem('surveyResults', JSON.stringify(surveyResults.value))
 
   // Reset form
   onCancelForm()
@@ -448,24 +448,24 @@ function onCancelForm() {
 
 //
 
-// Get poll results from localStorage
-const pollResults = ref(
-  JSON.parse(localStorage.getItem('pollResults'))?.length
-    ? JSON.parse(localStorage.getItem('pollResults'))
+// Get survey results from localStorage
+const surveyResults = ref(
+  JSON.parse(localStorage.getItem('surveyResults'))?.length
+    ? JSON.parse(localStorage.getItem('surveyResults'))
     : []
 )
 
 // Clean localStorage TODO: remove or comment
 function onCleanLocalStorage() {
-  localStorage.removeItem('pollResults')
-  pollResults.value = []
+  localStorage.removeItem('surveyResults')
+  surveyResults.value = []
 }
 
 // TODO: remove or comment
-if (pollResults.value?.length) {
-  console.log('🍎 ', pollResults.value)
+if (surveyResults.value?.length) {
+  console.log('🍎 ', surveyResults.value)
 } else {
-  console.log('🍎 No Poll Results')
+  console.log('🍎 No survey Results')
 }
 </script>
 

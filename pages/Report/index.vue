@@ -19,7 +19,7 @@
             >
               <!-- Caption -->
               <caption class="mb-5 text-base caption-top text-neutral-600">
-                Table: Lorem ipsum dolor ...
+                Table: Survey results.
               </caption>
 
               <!-- Head -->
@@ -53,7 +53,7 @@
               <!-- Body -->
               <tbody class="text-base text-neutral-600">
                 <tr
-                  v-for="result in pollResults"
+                  v-for="result in surveyResults"
                   :key="result.name + new Date()"
                   class="text-left"
                 >
@@ -114,10 +114,10 @@ definePageMeta({
 
 //
 
-// Get poll results from localStorage
-const pollResults = ref(
-  JSON.parse(localStorage.getItem('pollResults'))?.length
-    ? JSON.parse(localStorage.getItem('pollResults'))
+// Get survey results from localStorage
+const surveyResults = ref(
+  JSON.parse(localStorage.getItem('surveyResults'))?.length
+    ? JSON.parse(localStorage.getItem('surveyResults'))
     : []
 )
 

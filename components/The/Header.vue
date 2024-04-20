@@ -21,12 +21,12 @@
 
         <!-- POOL -->
         <NuxtLink
-          to="/poll/"
+          to="/survey/"
           class="p-2 text-base rounded-lg text-neutral-600 hover:text-neutral-900"
           :active-class="'nuxt-link-active'"
           exact
         >
-          Poll
+          Survey
         </NuxtLink>
 
         <!-- REPORT -->

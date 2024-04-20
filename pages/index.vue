@@ -4,7 +4,7 @@
       <!-- H1 -->
       <template #headline>
         <div class="flex items-start space-x-5">
-          <div class="w-1/2 space-y-3">
+          <div class="w-1/2 space-y-4">
             <!-- HEADLINE H1 -->
             <h1 class="text-5xl font-bold text-neutral-800">
               Colour Contrast <br />
@@ -13,18 +13,19 @@
             </h1>
             <!-- Subtitle -->
             <p class="text-xl text-neutral-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore ...
+              Enhancing digital accessibility through innovative color contrast
+              checking and real-user feedback, ensuring a clearer and more
+              inclusive web experience for all.
             </p>
             <!-- Author -->
-            <p class="text-base text-neutral-600">by Cristian Ciobanu, 2024</p>
+            <!-- <p class="text-base text-neutral-600">by Cristian Ciobanu, 2024</p> -->
 
             <div class="flex items-center pt-4 space-x-5">
               <AppButton
                 label="Contrast Checker"
                 @click="navigateTo('/contrast-checker/')"
               />
-              <AppButton label="Poll" @click="navigateTo('/poll/')" />
+              <AppButton label="Survey" @click="navigateTo('/survey/')" />
             </div>
           </div>
 
