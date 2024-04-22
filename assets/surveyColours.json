@@ -7,11 +7,11 @@
   "colourTwo": {
     "foreground": "#6AA84F",
     "background": "#FFFFFF",
-    "contrast": "4.5:1"
+    "contrast": "4.6:1"
   },
   "colourThree": {
     "foreground": "#3D85C6",
     "background": "#FFFFFF",
-    "contrast": "4.5:1"
+    "contrast": "4.7:1"
   }
 }

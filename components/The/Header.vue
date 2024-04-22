@@ -55,10 +55,10 @@
 
     <!-- GITHUB -->
     <NuxtLink
-      to="https://www.nngroup.com"
+      to="https://github.com/cubuletz/ccwpa"
       target="blank"
       external
-      class="w-8"
+      class="w-6"
       
     >
       <img alt="" src="/github.png"></img>
