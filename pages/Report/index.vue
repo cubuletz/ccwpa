@@ -137,36 +137,53 @@
           <section class="space-y-10">
             <!-- Sample 1 pie chart -->
             <div
-              class="pt-4 pl-5 border display-inline-block border-neutral-300"
+              class="px-5 pt-5 border display-inline-block border-neutral-300"
             >
-              <!-- Caption -->
-              <div class="text-base font-bold text-neutral-800">Sample 1</div>
-              <div class="text-base text-neutral-600">
-                Distribution of results on the total number of respondents.
+              <div class="flex items-center justify-between">
+                <div>
+                  <!-- Caption -->
+                  <div class="text-base font-bold text-neutral-800">
+                    {{ activePieChartName }}
+                  </div>
+                  <p class="text-base text-neutral-600">
+                    Distribution of results on the total number of respondents.
+                  </p>
+                </div>
+
+                <div class="flex w-1/3 space-x-3">
+                  <AppButton
+                    :variant="
+                      activePieChartName === 'Sample 1' ? 'solid' : 'gost'
+                    "
+                    label="Sample 1"
+                    @click="
+                      setActivePieChartData(dataSampleOne),
+                        setActivePieChart('Sample 1')
+                    "
+                  />
+                  <AppButton
+                    :variant="
+                      activePieChartName === 'Sample 2' ? 'solid' : 'gost'
+                    "
+                    label="Sample 2"
+                    @click="
+                      setActivePieChartData(dataSampleTwo),
+                        setActivePieChart('Sample 2')
+                    "
+                  />
+                  <AppButton
+                    :variant="
+                      activePieChartName === 'Sample 3' ? 'solid' : 'gost'
+                    "
+                    label="Sample 3"
+                    @click="
+                      setActivePieChartData(dataSampleThree),
+                        setActivePieChart('Sample 3')
+                    "
+                  />
+                </div>
               </div>
-              <PieChart v-bind="configPieChart" :data="dataSampleOne" />
-            </div>
-            <!-- Sample 2 pie chart -->
-            <div
-              class="pt-4 pl-5 border display-inline-block border-neutral-300"
-            >
-              <!-- Caption -->
-              <div class="text-base font-bold text-neutral-800">Sample 2</div>
-              <div class="text-base text-neutral-600">
-                Distribution of results on the total number of respondents.
-              </div>
-              <PieChart v-bind="configPieChart" :data="dataSampleTwo" />
-            </div>
-            <!-- Sample 3 pie chart -->
-            <div
-              class="pt-4 pl-5 border display-inline-block border-neutral-300"
-            >
-              <!-- Caption -->
-              <div class="text-base font-bold text-neutral-800">Sample 3</div>
-              <div class="text-base text-neutral-600">
-                Distribution of results on the total number of respondents.
-              </div>
-              <PieChart v-bind="configPieChart" :data="dataSampleThree" />
+              <PieChart v-bind="configPieChart" :data="activeDataPieChart" />
             </div>
           </section>
         </div>
@@ -253,7 +270,7 @@ G2.registerTheme('custom-theme', {
 })
 
 /*
- ** Chart total results
+ ** PIE CHART
  */
 // Chart config
 const configPieChart = {
@@ -319,6 +336,7 @@ const dataSampleOne = computed(() => {
     })
   return data
 })
+
 // Chart data sampler 2
 const dataSampleTwo = computed(() => {
   let data = []
@@ -347,6 +365,7 @@ const dataSampleTwo = computed(() => {
     })
   return data
 })
+
 // Chart data sample 3
 const dataSampleThree = computed(() => {
   let data = []
@@ -375,6 +394,17 @@ const dataSampleThree = computed(() => {
     })
   return data
 })
+
+// Active pie chart data
+const activeDataPieChart = ref(dataSampleOne.value)
+function setActivePieChartData(data) {
+  activeDataPieChart.value = data
+}
+// Active pie chart name
+const activePieChartName = ref('Sample 1')
+function setActivePieChart(name) {
+  activePieChartName.value = name
+}
 </script>
 
 <style lang="postcss" scoped></style>
