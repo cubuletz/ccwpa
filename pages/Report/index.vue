@@ -146,43 +146,21 @@
                     {{ activePieChartName }}
                   </div>
                   <p class="text-base text-neutral-600">
-                    Distribution of results on the total number of respondents.
+                    Distribution of results on the total number of participants.
                   </p>
                 </div>
 
-                <div class="flex w-1/3 space-x-3">
-                  <AppButton
-                    :variant="
-                      activePieChartName === 'Sample 1' ? 'solid' : 'gost'
-                    "
-                    label="Sample 1"
-                    @click="
-                      setActivePieChartData(dataSampleOne),
-                        setActivePieChart('Sample 1')
-                    "
-                  />
-                  <AppButton
-                    :variant="
-                      activePieChartName === 'Sample 2' ? 'solid' : 'gost'
-                    "
-                    label="Sample 2"
-                    @click="
-                      setActivePieChartData(dataSampleTwo),
-                        setActivePieChart('Sample 2')
-                    "
-                  />
-                  <AppButton
-                    :variant="
-                      activePieChartName === 'Sample 3' ? 'solid' : 'gost'
-                    "
-                    label="Sample 3"
-                    @click="
-                      setActivePieChartData(dataSampleThree),
-                        setActivePieChart('Sample 3')
-                    "
+                <!-- Select -->
+                <div class="w-1/4">
+                  <AppSelect
+                    v-model="activePieChartName"
+                    default-value="Sample 1"
+                    name="pieChart"
+                    :options="['Sample 1', 'Sample 2', 'Sample 3']"
                   />
                 </div>
               </div>
+              <!-- Pie chart -->
               <PieChart v-bind="configPieChart" :data="activeDataPieChart" />
             </div>
           </section>
@@ -300,7 +278,12 @@ const configPieChart = {
   },
   tooltip: {
     formatter: (datum) => {
-      return { name: datum.type, value: datum.value }
+      return {
+        name: datum.type,
+        value: `${datum.value} ${
+          datum.value === 1 ? 'participant' : 'participants'
+        }`,
+      }
     },
   },
   interactions: [{ type: 'element-active' }],
@@ -395,16 +378,26 @@ const dataSampleThree = computed(() => {
   return data
 })
 
-// Active pie chart data
-const activeDataPieChart = ref(dataSampleOne.value)
-function setActivePieChartData(data) {
-  activeDataPieChart.value = data
-}
 // Active pie chart name
-const activePieChartName = ref('Sample 1')
-function setActivePieChart(name) {
-  activePieChartName.value = name
-}
+const activePieChartName = ref(null)
+
+// Active pie chart data
+/* const activeDataPieChart = ref(
+  activePieChartName.value === 'Sample 1'
+    ? dataSampleOne.value
+    : activePieChartName.value === 'Sample 2'
+    ? dataSampleTwo.value
+    : dataSampleThree.value
+) */
+const activeDataPieChart = computed(() => {
+  let data
+  activePieChartName.value === 'Sample 1'
+    ? (data = dataSampleOne.value)
+    : activePieChartName.value === 'Sample 2'
+    ? (data = dataSampleTwo.value)
+    : (data = dataSampleThree.value)
+  return data
+})
 </script>
 
 <style lang="postcss" scoped></style>
