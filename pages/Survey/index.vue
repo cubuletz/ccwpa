@@ -345,11 +345,11 @@
               </div>
 
               <!-- Button clear local storage TODO: remove or comment -->
-              <AppButton
+              <!--  <AppButton
                 variant="gost"
                 label="CLEAN LOCAL STORAGE"
                 @click="onCleanLocalStorage"
-              />
+              /> -->
 
               <!-- Alert feedback -->
               <!-- <div
@@ -470,10 +470,10 @@ const surveyResults = ref(
 )
 
 // Clean localStorage TODO: remove or comment
-function onCleanLocalStorage() {
+/* function onCleanLocalStorage() {
   localStorage.removeItem('surveyResults')
   surveyResults.value = []
-}
+} */
 
 // TODO: remove or comment
 if (surveyResults.value?.length) {

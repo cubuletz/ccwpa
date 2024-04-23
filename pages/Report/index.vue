@@ -3,9 +3,17 @@
     <NuxtLayout name="main">
       <!-- MAIN -->
       <template #headline>
-        <div class="space-y-10">
+        <div class="flex items-center justify-between">
           <!-- HEADLINE H1 -->
           <h1 class="text-4xl font-bold">{{ pageTitle }}</h1>
+          <!-- DELETE DATA TODO: comment or remove -->
+          <div class="w-1/6 p-0.5 border-[3px] border-red-600 rounded-2xl">
+            <AppButton
+              variant="gost"
+              label="DELETE DATA"
+              @click="onDeleteLocalStorage"
+            />
+          </div>
         </div>
       </template>
 
@@ -84,6 +92,7 @@
               <!-- Head -->
               <thead>
                 <tr class="text-base text-neutral-800">
+                  <th class="p-3 border border-neutral-300">No.</th>
                   <th class="p-3 text-left border border-neutral-300">
                     First Name
                   </th>
@@ -103,10 +112,13 @@
               <!-- Body -->
               <tbody class="text-base text-neutral-600">
                 <tr
-                  v-for="result in surveyResults"
+                  v-for="(result, index) in surveyResults"
                   :key="result.name"
                   class="text-left"
                 >
+                  <td class="px-3 py-2 text-center border border-neutral-300">
+                    {{ index + 1 }}
+                  </td>
                   <td class="px-3 py-2 border border-neutral-300">
                     {{ result.firstName }}
                   </td>
@@ -135,34 +147,60 @@
 
           <!-- SECTION 2 -->
           <section class="space-y-10">
-            <!-- Sample 1 pie chart -->
-            <div
-              class="px-5 pt-5 border display-inline-block border-neutral-300"
-            >
-              <div class="flex items-center justify-between">
-                <div>
-                  <!-- Caption -->
-                  <div class="text-base font-bold text-neutral-800">
-                    {{ activePieChartName }}
-                  </div>
-                  <p class="text-base text-neutral-600">
-                    Distribution of results on the total number of participants.
-                  </p>
-                </div>
+            <!-- Chart distribution on total number of participants -->
+            <ChartPie
+              v-if="surveyResults.length"
+              :data-sample-one="distributionOnTotalOne"
+              :data-sample-two="distributionOnTotalTwo"
+              :data-sample-three="distributionOnTotalThree"
+              :participants-number="surveyResults.length"
+              :total-participants="surveyResults.length"
+              description="Distribution of results on the total number of participants"
+            />
 
-                <!-- Select -->
-                <div class="w-1/4">
-                  <AppSelect
-                    v-model="activePieChartName"
-                    default-value="Sample 1"
-                    name="pieChart"
-                    :options="['Sample 1', 'Sample 2', 'Sample 3']"
-                  />
-                </div>
-              </div>
-              <!-- Pie chart -->
-              <PieChart v-bind="configPieChart" :data="activeDataPieChart" />
-            </div>
+            <!-- Chart distribution on total number of participants with age below 40 -->
+            <ChartPie
+              v-if="surveyResults.length"
+              :data-sample-one="distributionOnAgeBelowOne"
+              :data-sample-two="distributionOnAgeBelowTwo"
+              :data-sample-three="distributionOnAgeBelowThree"
+              :participants-number="participantsOnAgeBelow"
+              :total-participants="surveyResults.length"
+              description="Distribution of results on the total number of participants with age below 40"
+            />
+
+            <!-- Chart distribution on total number of participants with age above 40 -->
+            <ChartPie
+              v-if="surveyResults.length"
+              :data-sample-one="distributionOnAgeAboveOne"
+              :data-sample-two="distributionOnAgeAboveTwo"
+              :data-sample-three="distributionOnAgeAboveThree"
+              :participants-number="participantsOnAgeAbove"
+              :total-participants="surveyResults.length"
+              description="Distribution of results on the total number of participants with age above 40"
+            />
+
+            <!-- Chart distribution on total number of participants with good visual capability -->
+            <ChartPie
+              v-if="surveyResults.length"
+              :data-sample-one="distributionOnVisualGoodOne"
+              :data-sample-two="distributionOnVisualGoodTwo"
+              :data-sample-three="distributionOnVisualGoodThree"
+              :participants-number="participantsOnVisualGood"
+              :total-participants="surveyResults.length"
+              description="Distribution of results on the total number of participants with good visual capability"
+            />
+
+            <!-- Chart distribution on total number of participants with bad visual capability -->
+            <ChartPie
+              v-if="surveyResults.length"
+              :data-sample-one="distributionOnVisualBadOne"
+              :data-sample-two="distributionOnVisualBadTwo"
+              :data-sample-three="distributionOnVisualBadThree"
+              :participants-number="participantsOnVisualBad"
+              :total-participants="surveyResults.length"
+              description="Distribution of results on the total number of participants with bad visual capability"
+            />
           </section>
         </div>
       </template>
@@ -208,6 +246,15 @@ definePageMeta({
 
 //
 
+// Delete localStorage 'surveyResults' data
+// TODO: remove or comment
+function onDeleteLocalStorage() {
+  localStorage.removeItem('surveyResults')
+  surveyResults.value = []
+}
+
+//
+
 // Get survey results from localStorage
 const surveyResults = ref(
   JSON.parse(localStorage.getItem('surveyResults'))?.length
@@ -232,67 +279,11 @@ const resultScale = (result) => {
 
 //
 
-//
-G2.registerTheme('custom-theme', {
-  /* colors10: [
-    surveyColours.colourOne.foreground,
-    surveyColours.colourTwo.foreground,
-    surveyColours.colourThree.foreground,
-  ], */
-  colors10: ['#006700', '#b38600', '#b30000'],
-  /* colors20: [
-    '#025DF4',
-    '#DB6BCF',
-    '#2498D1',
-  ], */
-})
-
 /*
- ** PIE CHART
+ ** CHART DISTRIBUTION ON TOTAL NUMBER OF PARTICIPANTS
  */
-// Chart config
-const configPieChart = {
-  // appendPadding: 10,
-  angleField: 'value',
-  colorField: 'type',
-  radius: 0.8,
-  label: {
-    type: 'inner',
-    offset: '-20%',
-    content: '{percentage}',
-    style: {
-      fontSize: 16, // Change the font size here
-      // textAlign: 'center',
-    },
-  },
-  legend: {
-    position: 'left',
-    marker: {
-      symbol: 'square',
-    },
-    itemName: {
-      style: {
-        fontSize: 14, // Change the font size here for legend items
-      },
-    },
-  },
-  tooltip: {
-    formatter: (datum) => {
-      return {
-        name: datum.type,
-        value: `${datum.value} ${
-          datum.value === 1 ? 'participant' : 'participants'
-        }`,
-      }
-    },
-  },
-  interactions: [{ type: 'element-active' }],
-  // use custom theme
-  theme: 'custom-theme',
-}
-
 // Chart data sample 1
-const dataSampleOne = computed(() => {
+const distributionOnTotalOne = computed(() => {
   let data = []
   let easyNr = 0
   let moderateNr = 0
@@ -319,9 +310,8 @@ const dataSampleOne = computed(() => {
     })
   return data
 })
-
 // Chart data sampler 2
-const dataSampleTwo = computed(() => {
+const distributionOnTotalTwo = computed(() => {
   let data = []
   let easyNr = 0
   let moderateNr = 0
@@ -348,9 +338,8 @@ const dataSampleTwo = computed(() => {
     })
   return data
 })
-
 // Chart data sample 3
-const dataSampleThree = computed(() => {
+const distributionOnTotalThree = computed(() => {
   let data = []
   let easyNr = 0
   let moderateNr = 0
@@ -378,24 +367,405 @@ const dataSampleThree = computed(() => {
   return data
 })
 
-// Active pie chart name
-const activePieChartName = ref(null)
+//
 
-// Active pie chart data
-/* const activeDataPieChart = ref(
-  activePieChartName.value === 'Sample 1'
-    ? dataSampleOne.value
-    : activePieChartName.value === 'Sample 2'
-    ? dataSampleTwo.value
-    : dataSampleThree.value
-) */
-const activeDataPieChart = computed(() => {
-  let data
-  activePieChartName.value === 'Sample 1'
-    ? (data = dataSampleOne.value)
-    : activePieChartName.value === 'Sample 2'
-    ? (data = dataSampleTwo.value)
-    : (data = dataSampleThree.value)
+/*
+ ** CHART DISTRIBUTION ON TOTAL NUMBER OF PARTICIPANTS WITH AGE BELOW 40
+ */
+// Number of participants
+const participantsOnAgeBelow = computed(() => {
+  return surveyResults.value.filter((item) => item.age <= 40).length
+})
+// Chart data sample 1
+const distributionOnAgeBelowOne = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.age <= 40) {
+      item.colourOne === 1 ? easyNr++ : null
+      item.colourOne === 2 ? moderateNr++ : null
+      item.colourOne === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 2
+const distributionOnAgeBelowTwo = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.age <= 40) {
+      item.colourTwo === 1 ? easyNr++ : null
+      item.colourTwo === 2 ? moderateNr++ : null
+      item.colourTwo === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 3
+const distributionOnAgeBelowThree = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.age <= 40) {
+      item.colourThree === 1 ? easyNr++ : null
+      item.colourThree === 2 ? moderateNr++ : null
+      item.colourThree === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+
+//
+
+/*
+ ** CHART DISTRIBUTION ON TOTAL NUMBER OF PARTICIPANTS WITH AGE ABOVE 40
+ */
+// Number of participants
+const participantsOnAgeAbove = computed(() => {
+  return surveyResults.value.filter((item) => item.age > 40).length
+})
+// Chart data sample 1
+const distributionOnAgeAboveOne = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.age > 40) {
+      item.colourOne === 1 ? easyNr++ : null
+      item.colourOne === 2 ? moderateNr++ : null
+      item.colourOne === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 2
+const distributionOnAgeAboveTwo = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.age > 40) {
+      item.colourTwo === 1 ? easyNr++ : null
+      item.colourTwo === 2 ? moderateNr++ : null
+      item.colourTwo === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 3
+const distributionOnAgeAboveThree = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.age > 40) {
+      item.colourThree === 1 ? easyNr++ : null
+      item.colourThree === 2 ? moderateNr++ : null
+      item.colourThree === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+
+//
+
+/*
+ ** CHART DISTRIBUTION ON TOTAL NUMBER OF PARTICIPANTS WITH GOOD VISUAL CAPABILITY
+ */
+// Number of participants
+const participantsOnVisualGood = computed(() => {
+  return surveyResults.value.filter((item) => item.visualCapability === 'Good')
+    .length
+})
+// Chart data sample 1
+const distributionOnVisualGoodOne = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.visualCapability === 'Good') {
+      item.colourOne === 1 ? easyNr++ : null
+      item.colourOne === 2 ? moderateNr++ : null
+      item.colourOne === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 2
+const distributionOnVisualGoodTwo = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.visualCapability === 'Good') {
+      item.colourTwo === 1 ? easyNr++ : null
+      item.colourTwo === 2 ? moderateNr++ : null
+      item.colourTwo === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 3
+const distributionOnVisualGoodThree = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.visualCapability === 'Good') {
+      item.colourThree === 1 ? easyNr++ : null
+      item.colourThree === 2 ? moderateNr++ : null
+      item.colourThree === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+
+//
+
+/*
+ ** CHART DISTRIBUTION ON TOTAL NUMBER OF PARTICIPANTS WITH BAD VISUAL CAPABILITY
+ */
+// Number of participants
+const participantsOnVisualBad = computed(() => {
+  return surveyResults.value.filter((item) => item.visualCapability === 'Bad')
+    .length
+})
+// Chart data sample 1
+const distributionOnVisualBadOne = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.visualCapability === 'Bad') {
+      item.colourOne === 1 ? easyNr++ : null
+      item.colourOne === 2 ? moderateNr++ : null
+      item.colourOne === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 2
+const distributionOnVisualBadTwo = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.visualCapability === 'Bad') {
+      item.colourTwo === 1 ? easyNr++ : null
+      item.colourTwo === 2 ? moderateNr++ : null
+      item.colourTwo === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
+  return data
+})
+// Chart data sample 3
+const distributionOnVisualBadThree = computed(() => {
+  let data = []
+  let easyNr = 0
+  let moderateNr = 0
+  let difficultNr = 0
+  surveyResults.value.forEach((item) => {
+    if (item.visualCapability === 'Bad') {
+      item.colourThree === 1 ? easyNr++ : null
+      item.colourThree === 2 ? moderateNr++ : null
+      item.colourThree === 3 ? difficultNr++ : null
+    }
+  })
+  easyNr &&
+    data.push({
+      type: 'easy',
+      value: easyNr,
+    })
+  moderateNr &&
+    data.push({
+      type: 'moderate',
+      value: moderateNr,
+    })
+  difficultNr &&
+    data.push({
+      type: 'difficult',
+      value: difficultNr,
+    })
   return data
 })
 </script>

@@ -4,7 +4,7 @@
     :id="name"
     :name="name"
     :required="required"
-    class="w-full h-12 py-3 pl-3 pr-10 border rounded-xl text-neutral-800 border-neutral-400 hover:border-neutral-800 arrow"
+    class="w-full h-12 py-3 pl-3 pr-10 border cursor-pointer rounded-xl text-neutral-800 border-neutral-400 hover:border-neutral-800 arrow"
   >
     <option v-for="option in options" :key="option" :value="option">
       {{ option }}
