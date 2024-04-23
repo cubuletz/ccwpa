@@ -44,7 +44,7 @@
                 >
                   <span>Foreground</span>
                   <div
-                    class="w-5 h-5"
+                    class="w-5 h-5 border border-neutral-300"
                     :style="{
                       backgroundColor: item.foreground,
                     }"
@@ -64,6 +64,14 @@
                     }"
                   ></div>
                   <span>{{ item.background }}</span>
+                </div>
+
+                <!-- Font size -->
+                <div
+                  class="flex items-center space-x-2 text-base text-neutral-600"
+                >
+                  <span>Font size:</span>
+                  <span class="font-base text-neutral-600"> 16px</span>
                 </div>
 
                 <!-- Contrast -->

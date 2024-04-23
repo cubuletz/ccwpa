@@ -97,11 +97,16 @@
               >
                 <div class="flex items-center">
                   <div
-                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
+                    class="flex items-center justify-center w-full h-16 border border-neutral-200"
+                    :style="{
+                      backgroundColor: surveyColours.colourOne.background,
+                    }"
                   >
                     <p
                       class="text-base"
-                      :style="{ color: surveyColours.colourOne.foreground }"
+                      :style="{
+                        color: surveyColours.colourOne.foreground,
+                      }"
                     >
                       The quick brown fox jumps over the lazy dog.
                     </p>
@@ -178,7 +183,10 @@
               >
                 <div class="flex items-center">
                   <div
-                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
+                    class="flex items-center justify-center w-full h-16 border border-neutral-200"
+                    :style="{
+                      backgroundColor: surveyColours.colourTwo.background,
+                    }"
                   >
                     <p
                       class="text-base"
@@ -259,7 +267,10 @@
               >
                 <div class="flex items-center">
                   <div
-                    class="w-full h-16 flex items-center justify-center bg-[#FFFFFF] border-none border-neutral-200"
+                    class="flex items-center justify-center w-full h-16 border border-neutral-200"
+                    :style="{
+                      backgroundColor: surveyColours.colourThree.background,
+                    }"
                   >
                     <p
                       class="text-base"

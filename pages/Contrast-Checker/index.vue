@@ -43,7 +43,7 @@
                         :default-value="options.foreground"
                         :sample-color="options.foreground"
                         :sample-alpha="options.foregroundAlpha"
-                        pattern="^\d{1,3}, \d{1,3}, \d{1,3}"
+                        pattern="^(25[0-5]|1[0-9]{2}|[1-9]?[0-9]), (25[0-5]|1[0-9]{2}|[1-9]?[0-9]), (25[0-5]|1[0-9]{2}|[1-9]?[0-9])$"
                         class="w-full"
                       />
                     </div>
@@ -88,7 +88,7 @@
                         :default-value="options.background"
                         :sample-color="options.background"
                         :sample-alpha="options.backgroundAlpha"
-                        pattern="\d{1,3}, \d{1,3}, \d{1,3}"
+                        pattern="^(25[0-5]|1[0-9]{2}|[1-9]?[0-9]), (25[0-5]|1[0-9]{2}|[1-9]?[0-9]), (25[0-5]|1[0-9]{2}|[1-9]?[0-9])$"
                         class="w-full"
                       />
                     </div>
