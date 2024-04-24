@@ -91,258 +91,278 @@
                 </div>
               </div>
 
-              <!-- *** 1st -->
-              <div
-                class="px-5 pt-5 pb-4 space-y-4 border rounded-2xl border-neutral-300"
-              >
-                <div class="flex items-center">
-                  <div
-                    class="flex items-center justify-center w-full h-16 border border-neutral-200"
-                    :style="{
-                      backgroundColor: surveyColours.colourOne.background,
-                    }"
-                  >
-                    <p
-                      class="text-base"
+              <!-- Wrapper -->
+              <div>
+                <!-- Legend -->
+                <div class="space-y-2 text-base my-9 text-neutral-600">
+                  <p>How easy is to read the text in the boxes below?</p>
+
+                  <div>
+                    <p class="font-semibold">Response options:</p>
+                    <ul class="list-disc list-inside">
+                      <li>
+                        <span class="font-semibold">Easy</span> - the text is
+                        very clear and easy to read
+                      </li>
+                      <li>
+                        <span class="font-semibold">Moderate</span> - the text
+                        is readable, but it requires some effort
+                      </li>
+                      <li>
+                        <span class="font-semibold">Difficult</span> - the text
+                        is hard to read and strains the eyes
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- *** 1st -->
+                <div class="mb-10 space-y-2">
+                  <div class="flex items-center">
+                    <div
+                      class="flex items-center justify-center w-full h-16 border border-neutral-300"
                       :style="{
-                        color: surveyColours.colourOne.foreground,
+                        backgroundColor: surveyColours.colourOne.background,
                       }"
                     >
-                      The quick brown fox jumps over the lazy dog.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Color One -->
-                <fieldset
-                  name="color_one"
-                  class="flex items-center mx-auto space-x-5 w-max"
-                >
-                  <!-- Poor -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourOne"
-                      type="radio"
-                      id="color_one"
-                      name="color_one"
-                      :value="1"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_one"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Easy
-                    </label>
+                      <p
+                        class="text-base"
+                        :style="{
+                          color: surveyColours.colourOne.foreground,
+                        }"
+                      >
+                        The quick brown fox jumps over the lazy dog.
+                      </p>
+                    </div>
                   </div>
 
-                  <!-- Good -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourOne"
-                      type="radio"
-                      id="color_one"
-                      name="color_one"
-                      :value="2"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_one"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Moderate
-                    </label>
-                  </div>
-
-                  <!-- Very Good -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourOne"
-                      type="radio"
-                      id="color_one"
-                      name="color_one"
-                      :value="3"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_one"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Difficult
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
-
-              <!-- *** 2nd -->
-              <div
-                class="px-5 pt-5 pb-4 space-y-4 border rounded-2xl border-neutral-300"
-              >
-                <div class="flex items-center">
-                  <div
-                    class="flex items-center justify-center w-full h-16 border border-neutral-200"
-                    :style="{
-                      backgroundColor: surveyColours.colourTwo.background,
-                    }"
+                  <!-- Color One -->
+                  <fieldset
+                    name="color_one"
+                    class="flex items-center mx-auto space-x-5 w-max"
                   >
-                    <p
-                      class="text-base"
-                      :style="{ color: surveyColours.colourTwo.foreground }"
-                    >
-                      The quick brown fox jumps over the lazy dog.
-                    </p>
-                  </div>
+                    <!-- Poor -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourOne"
+                        type="radio"
+                        id="color_one"
+                        name="color_one"
+                        :value="1"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_one"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Easy
+                      </label>
+                    </div>
+
+                    <!-- Good -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourOne"
+                        type="radio"
+                        id="color_one"
+                        name="color_one"
+                        :value="2"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_one"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Moderate
+                      </label>
+                    </div>
+
+                    <!-- Very Good -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourOne"
+                        type="radio"
+                        id="color_one"
+                        name="color_one"
+                        :value="3"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_one"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Difficult
+                      </label>
+                    </div>
+                  </fieldset>
                 </div>
 
-                <!-- Color Two -->
-                <fieldset
-                  name="color_two"
-                  class="flex items-center mx-auto space-x-5 w-max"
-                >
-                  <!-- Poor -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourTwo"
-                      type="radio"
-                      id="color_two"
-                      name="color_two"
-                      :value="1"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_two"
-                      class="text-base cursor-pointer text-neutral-600"
+                <!-- *** 2nd -->
+                <div class="mb-10 space-y-2">
+                  <div class="flex items-center">
+                    <div
+                      class="flex items-center justify-center w-full h-16 border border-neutral-300"
+                      :style="{
+                        backgroundColor: surveyColours.colourTwo.background,
+                      }"
                     >
-                      Easy
-                    </label>
+                      <p
+                        class="text-base"
+                        :style="{ color: surveyColours.colourTwo.foreground }"
+                      >
+                        The quick brown fox jumps over the lazy dog.
+                      </p>
+                    </div>
                   </div>
 
-                  <!-- Good -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourTwo"
-                      type="radio"
-                      id="color_two"
-                      name="color_two"
-                      :value="2"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_two"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Moderate
-                    </label>
-                  </div>
-
-                  <!-- Very Good -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourTwo"
-                      type="radio"
-                      id="color_two"
-                      name="color_two"
-                      :value="3"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_two"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Difficult
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
-
-              <!-- *** 3nd -->
-              <div
-                class="px-5 pt-5 pb-4 space-y-4 border rounded-2xl border-neutral-300"
-              >
-                <div class="flex items-center">
-                  <div
-                    class="flex items-center justify-center w-full h-16 border border-neutral-200"
-                    :style="{
-                      backgroundColor: surveyColours.colourThree.background,
-                    }"
+                  <!-- Color Two -->
+                  <fieldset
+                    name="color_two"
+                    class="flex items-center mx-auto space-x-5 w-max"
                   >
-                    <p
-                      class="text-base"
-                      :style="{ color: surveyColours.colourThree.foreground }"
-                    >
-                      The quick brown fox jumps over the lazy dog.
-                    </p>
-                  </div>
+                    <!-- Poor -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourTwo"
+                        type="radio"
+                        id="color_two"
+                        name="color_two"
+                        :value="1"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_two"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Easy
+                      </label>
+                    </div>
+
+                    <!-- Good -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourTwo"
+                        type="radio"
+                        id="color_two"
+                        name="color_two"
+                        :value="2"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_two"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Moderate
+                      </label>
+                    </div>
+
+                    <!-- Very Good -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourTwo"
+                        type="radio"
+                        id="color_two"
+                        name="color_two"
+                        :value="3"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_two"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Difficult
+                      </label>
+                    </div>
+                  </fieldset>
                 </div>
 
-                <!-- Color Three -->
-                <fieldset
-                  name="color_three"
-                  class="flex items-center mx-auto space-x-5 w-max"
-                >
-                  <!-- Easy -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourThree"
-                      type="radio"
-                      id="color_three"
-                      name="color_three"
-                      :value="1"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_three"
-                      class="text-base cursor-pointer text-neutral-600"
+                <!-- *** 3nd -->
+                <div class="pb-5 space-y-2">
+                  <div class="flex items-center">
+                    <div
+                      class="flex items-center justify-center w-full h-16 border border-neutral-300"
+                      :style="{
+                        backgroundColor: surveyColours.colourThree.background,
+                      }"
                     >
-                      Easy
-                    </label>
+                      <p
+                        class="text-base"
+                        :style="{ color: surveyColours.colourThree.foreground }"
+                      >
+                        The quick brown fox jumps over the lazy dog.
+                      </p>
+                    </div>
                   </div>
 
-                  <!-- Moderate -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourThree"
-                      type="radio"
-                      id="color_three"
-                      name="color_three"
-                      :value="2"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_three"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Moderate
-                    </label>
-                  </div>
+                  <!-- Color Three -->
+                  <fieldset
+                    name="color_three"
+                    class="flex items-center mx-auto space-x-5 w-max"
+                  >
+                    <!-- Easy -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourThree"
+                        type="radio"
+                        id="color_three"
+                        name="color_three"
+                        :value="1"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_three"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Easy
+                      </label>
+                    </div>
 
-                  <!-- Difficult -->
-                  <div class="flex items-center space-x-1">
-                    <input
-                      v-model="colourThree"
-                      type="radio"
-                      id="color_three"
-                      name="color_three"
-                      :value="3"
-                      :required="true"
-                      class="w-5 h-5 cursor-pointer"
-                    />
-                    <label
-                      for="color_three"
-                      class="text-base cursor-pointer text-neutral-600"
-                    >
-                      Difficult
-                    </label>
-                  </div>
-                </fieldset>
+                    <!-- Moderate -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourThree"
+                        type="radio"
+                        id="color_three"
+                        name="color_three"
+                        :value="2"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_three"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Moderate
+                      </label>
+                    </div>
+
+                    <!-- Difficult -->
+                    <div class="flex items-center space-x-1">
+                      <input
+                        v-model="colourThree"
+                        type="radio"
+                        id="color_three"
+                        name="color_three"
+                        :value="3"
+                        :required="true"
+                        class="w-5 h-5 cursor-pointer"
+                      />
+                      <label
+                        for="color_three"
+                        class="text-base cursor-pointer text-neutral-600"
+                      >
+                        Difficult
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
               </div>
 
               <!-- Action buttons -->

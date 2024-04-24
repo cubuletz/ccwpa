@@ -9,7 +9,7 @@
         <p class="text-base text-neutral-600">
           {{ description }}
         </p>
-        <div class="text-base text-purple-800">
+        <div class="text-base text-neutral-600">
           Pariticipants: {{ participantsNumber }} / {{ totalParticipants }}
           <!-- {{ participantsNumber > 1 ? 'participants' : 'participant' }} -->
         </div>
