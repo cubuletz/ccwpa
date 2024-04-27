@@ -375,20 +375,13 @@
                 />
               </div>
 
-              <!-- Button clear local storage TODO: remove or comment -->
-              <!--  <AppButton
-                variant="gost"
-                label="CLEAN LOCAL STORAGE"
-                @click="onCleanLocalStorage"
-              /> -->
-
               <!-- Alert feedback -->
-              <!-- <div
+              <div
                 v-if="isFeedbackVisible"
-                class="px-4 py-3 text-base text-green-700 border border-green-600"
+                class="px-4 py-3 text-base text-white bg-green-700 border"
               >
                 Successfully submitted. Thanks for your feedback.
-              </div> -->
+              </div>
             </form>
           </section>
         </div>
@@ -443,19 +436,15 @@ const colourOne = ref(null)
 const colourTwo = ref(null)
 const colourThree = ref(null)
 
-// Feddback message
-// const isFeedbackVisible = ref(false)
-// Hide feedback message
-/* watch(firstName, () => (isFeedbackVisible.value = false))
-watch(age, () => (isFeedbackVisible.value = false))
-watch(ocupation, () => (isFeedbackVisible.value = false))
-watch(visualCapability, () => (isFeedbackVisible.value = false))
-watch(colourOne, () => (isFeedbackVisible.value = false))
-watch(colourTwo, () => (isFeedbackVisible.value = false))
-watch(colourThree, () => (isFeedbackVisible.value = false)) */
+// Feddback message visibility state
+const isFeedbackVisible = ref(false)
 
 // Submit form
 function onSubmitForm() {
+  // Hide feedback message
+  isFeedbackVisible.value = false
+
+  // Save survey results
   surveyResults.value.push({
     firstName: firstName.value,
     age: age.value,
@@ -473,7 +462,11 @@ function onSubmitForm() {
   onCancelForm()
 
   // Show feedback message
-  // isFeedbackVisible.value = true
+  isFeedbackVisible.value = true
+  // Hide feedback message
+  setTimeout(() => {
+    isFeedbackVisible.value = false
+  }, 3000)
 }
 
 // Cancel form
@@ -488,7 +481,7 @@ function onCancelForm() {
   colourThree.value = null
 
   // Hide feedback message
-  // isFeedbackVisible.value = false
+  isFeedbackVisible.value = false
 }
 
 //
@@ -500,18 +493,12 @@ const surveyResults = ref(
     : []
 )
 
-// Clean localStorage TODO: remove or comment
-/* function onCleanLocalStorage() {
-  localStorage.removeItem('surveyResults')
-  surveyResults.value = []
-} */
-
 // TODO: remove or comment
-if (surveyResults.value?.length) {
+/* if (surveyResults.value?.length) {
   console.log('🍎 ', surveyResults.value)
 } else {
   console.log('🍎 No survey Results')
-}
+} */
 </script>
 
 <style lang="postcss" scoped></style>
